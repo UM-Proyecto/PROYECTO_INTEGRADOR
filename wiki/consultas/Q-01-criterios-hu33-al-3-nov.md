@@ -1,7 +1,7 @@
 ---
 tipo: hallazgo
 subtipo: consulta
-fuentes: [F02, F03, F04, F05, F06]
+fuentes: [F02, F03, F04, F05, F06, F07]
 fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: inferido
@@ -77,6 +77,15 @@ Tres afirmaciones de esta respuesta se contrastaron con los archivos originales 
 | Q1 y Q1b | KPI-1: mejora de 0 % (promedio móvil) y −128,6 % (mismo día de la semana) | [F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), MAE por repuesto y método | [CALCULADO] Las cifras coinciden, pero la lectura estaba incompleta: en los 3 repuestos con ventas los métodos empatan (0,467) y el −128,6 % sale de 2 repuestos sin ventas. Se corrigió la tabla y se agregó la afirmación a «Lo que la evidencia no sostiene» |
 | Q2 | KPI-3: el corte tendría que llegar al 2026-10-04 y el actual está 20 días antes | [F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `movimientos_inventario`; meta de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md) | [CALCULADO] Coincide |
 | Q3 | KPI-2: 66,7 % con los 4 pendientes, 73,3 % contando las estimaciones, meta de 12 de 15 | [F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato` | [CALCULADO] Coincide. Se precisó que las 5 estimaciones no son valores publicados sino cálculos sobre datos del INE |
+
+## Cambios después de la segunda ingesta (revisión 04)
+
+[INFERENCIA] La respuesta corta no cambia: después de incorporar [[F07-datos-simulados-hu34|F07]], ninguno de los tres criterios respalda todavía una decisión de compra, y los tres valores siguen iguales (KPI-1 no medible, KPI-2 en 40 %, KPI-3 en 50 días). Cambian dos cosas de «Qué falta»:
+
+- [CALCULADO] Para KPI-1 ya no falta un historial con el largo que pide F03. Las ventas de F07 cubren 662 días seguidos de 30 repuestos, y reservando los 3 últimos meses cada repuesto tiene al menos 246 días con ventas en el año de entrenamiento ([F07](../../fuentes/F07_datos_simulados_HU34/ventas_simuladas.csv), columnas `fecha`, `sku` y `unidades_vendidas`; verificación I2-2). Lo que falta ahora es correr la comparación de métodos sobre ese historial, resolver C-02 (con la regla de F04, de 12 + 12 meses, no alcanzaría) y aceptar que el historial es FICTICIO, de modo que el resultado probaría el método y no la demanda de MULTIPARTES.
+- [CALCULADO] Para KPI-3 el valor depende de qué conjunto se tome como «movimientos»: 50 días con los movimientos que nombra F03 y 10 con las ventas de F07, que cumplirían la meta hasta el 2026-11-23 ([F07](../../fuentes/F07_datos_simulados_HU34/ventas_simuladas.csv), columna `fecha`; verificación I2-3). La ambigüedad quedó acotada a cinco candidatos en [[KPI-3-vigencia-datos#Ambigüedades|KPI-3]], y la decisión es del equipo.
+
+[OBSERVADO] F07 trae además una contradicción nueva sobre el origen de los datos, C-06, registrada en [[index]]. No cambia ninguna cifra de esta respuesta.
 
 ## Cómo recalcular
 

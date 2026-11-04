@@ -5,7 +5,7 @@ fuentes: [F07, F02, F04, F06]
 fecha: 2026-10-24
 clase_datos: [FICTICIO]
 estado: observado
-revision: borrador
+revision: revisado
 actualizado: 2026-11-03
 tags: [fuente, ficticio]
 ---

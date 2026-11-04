@@ -119,6 +119,37 @@ def q3():
             int(0.8 * t)), (66.7, 73.3, 12)
 
 
+# Verificaciones de la segunda ingesta (revisión 04)
+
+@verif("I2-1", "F07: ventas_simuladas tiene 19.860 filas, 30 repuestos y 662 días seguidos del 2025-01-01 al 2026-10-24, sin claves fecha + sku repetidas",
+       "F07 ventas_simuladas.csv, columnas fecha y sku")
+def i2_1():
+    r = leer("F07_datos_simulados_HU34/ventas_simuladas.csv")
+    f = sorted({x["fecha"] for x in r})
+    seguidos = dias(f[0], f[-1]) + 1
+    return (len(r), len({x["sku"] for x in r}), len(f), seguidos, f[0], f[-1], len(r) - len({(x["fecha"], x["sku"]) for x in r})), \
+           (19860, 30, 662, 662, "2025-01-01", "2026-10-24", 0)
+
+
+@verif("I2-2", "F07: reservando los 3 últimos meses (92 días desde el 2026-07-25), en el año de entrenamiento anterior cada repuesto tiene al menos 246 días con ventas",
+       "F07 ventas_simuladas.csv, columnas fecha, sku y unidades_vendidas")
+def i2_2():
+    r = leer("F07_datos_simulados_HU34/ventas_simuladas.csv")
+    ini_reserva, fin = dt.date(2026, 7, 25), dt.date(2026, 10, 24)
+    ini_ent = ini_reserva - dt.timedelta(days=365)
+    c = Counter(x["sku"] for x in r if ini_ent <= dt.date.fromisoformat(x["fecha"]) < ini_reserva and int(x["unidades_vendidas"]) > 0)
+    return ((fin - ini_reserva).days + 1, len(c), min(c.values())), (92, 30, 246)
+
+
+@verif("I2-3", "KPI-3 tras la segunda ingesta: con las ventas de F07 (corte 2026-10-24) son 10 días al 3-nov-2026 y cumplirían la meta hasta el 2026-11-23; con los movimientos de F03 siguen siendo 50",
+       "F07 ventas_simuladas.csv, columna fecha; F02 fila movimientos_inventario")
+def i2_3():
+    corte_v = max(x["fecha"] for x in leer("F07_datos_simulados_HU34/ventas_simuladas.csv"))
+    corte_m = {r["conjunto"]: r for r in leer("F02_registro_fuentes_HU02/registro_actualizaciones.csv")}["movimientos_inventario"]["fecha_corte_datos"]
+    return (dias(corte_v, "2026-11-03"), (dt.date.fromisoformat(corte_v) + dt.timedelta(days=30)).isoformat(), dias(corte_m, "2026-11-03")), \
+           (10, "2026-11-23", 50)
+
+
 def main():
     filas, fallas = [], 0
     for codigo, afirm, fuente, fn in VERIF:

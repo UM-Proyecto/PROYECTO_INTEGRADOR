@@ -136,3 +136,7 @@ Registro cronológico. Sólo se agregan entradas al final; las anteriores no se 
 - [[Q-01-criterios-hu33-al-3-nov|Q-01]] (revisada): su tabla «Qué falta» dice que no hay historial de un año más 3 meses, y con F07 lo hay como dato FICTICIO. Lo decide la persona que revisa.
 - Los CSV de compras e inventario de la HU-34 no están en `fuentes/`.
 - F07 y las páginas modificadas quedan en `revision: borrador` hasta la revisión humana.
+
+## 2026-11-03. Revisión humana de la etapa 4
+
+**Notas:** `docs/u4-t1/evidencia/revisiones/04.md`. Se recalcularon las cifras nuevas de la ingesta de [[F07-datos-simulados-hu34|F07]] con `src/u4-t1/verificar.py` (I2-1 a I2-3: 19.860 filas, 30 repuestos, 662 días seguidos, al menos 246 días con ventas en el año de entrenamiento, 10 días de vigencia con las ventas). Coinciden. Se aceptaron los cambios del agente y la contradicción C-06 con sus dos referencias. Se agregó a [[Q-01-criterios-hu33-al-3-nov|Q-01]], que el agente no podía editar por estar revisada, la sección de cambios después de la segunda ingesta: la respuesta corta se mantiene y cambia lo que falta para KPI-1 y KPI-3.
