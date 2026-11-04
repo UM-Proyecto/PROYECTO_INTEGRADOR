@@ -1,0 +1,166 @@
+@RESUMEN
+Este trabajo implementa en el Proyecto Integrador una wiki de conocimiento mantenida con ayuda de un agente de inteligencia artificial, siguiendo el patrón LLM Wiki de Andrej Karpathy. El proyecto busca qué técnicas de análisis de datos apoyan las decisiones de compra de MULTIPARTES, una importadora de repuestos de Santa Cruz de la Sierra, durante el segundo semestre de 2026. La wiki vive en el repositorio UM-Proyecto/PROYECTO_INTEGRADOR y tiene tres partes: diecisiete copias intactas de las fuentes del proyecto, cada una con su huella SHA-256; dieciocho páginas Markdown que se abren en GitHub y en Obsidian; y un archivo de instrucciones para el agente. El agente fue Claude Code con el modelo Opus. Trabajó en cuatro corridas (ingesta inicial, consulta, revisión de salud y segunda ingesta) y cada una pasó por una revisión antes de aceptarse. La pregunta de negocio fue cuáles de los tres criterios de éxito del proyecto respaldan hoy una decisión de compra. La respuesta es que ninguno: el pronóstico no se puede medir todavía, el costo de importación tiene respaldo documental en el 40 % de sus componentes frente a una meta del 80 %, y los datos de movimientos tienen 50 días de antigüedad frente a un máximo de 30. Doce afirmaciones de la wiki se recalcularon desde las fuentes con scripts reproducibles. Una de ellas mostró que una conclusión del agente sobre los métodos de pronóstico no se sostenía, y la revisión de salud encontró dos errores en mi propia revisión anterior. La segunda ingesta no cambió ningún valor, pero sí el diagnóstico de dos indicadores.
+@CLAVES Business Intelligence, LLM Wiki, agentes de IA, trazabilidad, indicadores, Obsidian, MULTIPARTES.
+
+# INTRODUCCIÓN
+La tarea pide implementar en el Proyecto Integrador una wiki de conocimiento mantenida con ayuda de un agente de inteligencia artificial, que conecte la evidencia, las definiciones, las decisiones y los resultados del proyecto. La idea viene del patrón LLM Wiki de Andrej Karpathy: se conservan las fuentes originales, se derivan de ellas páginas Markdown enlazadas, se escriben instrucciones para el agente y se trabaja por iteraciones de ingesta, consulta y revisión. El gist describe la idea en general, y lo que pide la tarea es concretarla para un proyecto real y justificar cada decisión.
+
+El proyecto sobre el que trabajé es el de MULTIPARTES, una empresa de Santa Cruz de la Sierra que importa repuestos automotrices desde China. Funciona como Proyecto Integrador porque cumple con lo que la tarea presupone: tiene un objetivo general y una pregunta enfocada aprobados, fuentes de datos registradas (una muestra inicial que facilitó la empresa, datos de prueba con la misma estructura y datos públicos del comercio exterior), tres criterios de éxito con meta y línea base, y lo trabajamos los tres integrantes del equipo, Sabrina Adrian Zelaya, Fiorella Sandoval y yo, con el trabajo de datos en el repositorio de Minería de Datos, así que no hizo falta inventar otro proyecto.
+
+El informe sigue el orden de la tarea. Primero delimito para qué sirve la wiki y presento el mapa que conecta objetivos, fuentes, indicadores, páginas y decisiones. Después describo la estructura y las reglas, el prompt y su mejora, las dos ingestas, la consulta con sus verificaciones y la revisión de salud. Al final respondo las cinco preguntas sobre los pasos siguientes. Todo lo que menciono está en el repositorio, y el anexo explica cómo reproducir cada verificación.
+
+# EL PROYECTO Y LA UTILIDAD DE LA WIKI
+## Objetivos, decisión y usuario
+El objetivo general del proyecto, tal como está en el documento de la pregunta enfocada del 14 de octubre de 2026, es determinar las técnicas de análisis de datos que permiten apoyar las decisiones de compra de MULTIPARTES durante el segundo semestre de 2026. La decisión concreta es qué repuesto pedir a China, en qué cantidad y cuándo, y quien la toma es el jefe de compras de la empresa, que es el actor principal que nombra la descripción de datos de la HU-34. El equipo mantiene la wiki y los docentes la evalúan.
+
+Para que la wiki sirviera a esa decisión dividí el objetivo general en tres, uno por cada cosa que una compra necesita saber. El primero es cuánto se va a vender, para fijar la cantidad. El segundo es cuánto cuesta traer el repuesto, para decidir si conviene y por qué medio. El tercero es si los datos con los que se decide están al día. Cada uno coincide con uno de los tres criterios de éxito que el equipo aprobó el 27 de octubre en la HU-33, y esos criterios son los resultados esperados del proyecto: un pronóstico de salidas al menos un 15 % mejor que la referencia más simple, un costo de importación con respaldo documental en el 80 % de sus componentes o más, y datos de movimientos con 30 días de antigüedad o menos al momento de decidir.
+
+## Pregunta de negocio
+La pregunta enfocada del proyecto es buena para el semestre, pero no se puede verificar en una consulta, porque no dice qué número la respondería. Por eso la wiki trabaja con una pregunta más acotada: con la evidencia disponible al 3 de noviembre de 2026, cuáles de los tres criterios de éxito pueden respaldar hoy una decisión de compra de MULTIPARTES, qué valor tiene cada uno frente a su meta y qué falta para los que no la alcanzan. La respuesta mejora al conectar fuentes, definiciones de indicadores y hallazgos, porque los valores salen de tres historias de usuario distintas y las metas de una cuarta.
+
+La evidencia que permite juzgar si la respuesta es útil quedó fijada antes de formularla: cada valor tiene que poder recalcularse desde las fuentes con un comando, la respuesta tiene que decir qué parte se apoya en datos de prueba y qué parte en datos públicos, y para cada criterio que no cumple tiene que nombrar el insumo que falta.
+
+## Mapa del proyecto
+La Tabla 1 resume el mapa que conecta cada objetivo con su fuente, su indicador, la página de la wiki que lo desarrolla y la parte de la decisión que apoya. El mapa completo, con enlaces, está en wiki/objetivos.md.
+
+TABLA|Mapa objetivo, fuente, indicador, página y decisión|2.4,2.4,3,1.7,2.6
+| Objetivo | Fuentes | Indicador y valor al 3 de noviembre | Página | Decisión que apoya |
+| O1. Cuánto se va a vender | F04 (pronósticos, HU-07), F03, F02, F07 | KPI-1, mejora del error frente al último periodo: no medible | O-1, KPI-1 | Cantidad a pedir |
+| O2. Cuánto cuesta traerlo | F05 (costos de importación, HU-31), F03, F02 | KPI-2, componentes del costo con documento: 40 % (6 de 15) | O-2, KPI-2 | Qué repuesto y por qué medio |
+| O3. Con datos al día | F02 (registro de fuentes, HU-02), F03, F07 | KPI-3, días entre el corte de los movimientos y la decisión: 50 | O-3, KPI-3 | Cuándo decidir |
+NOTA|Elaboración propia a partir de wiki/objetivos.md. Las metas son las de F03 (criterios aprobados de la HU-33).
+
+# ESTRUCTURA Y REGLAS DE LA WIKI
+## Fuentes conservadas
+Creé un repositorio propio para el Proyecto Integrador, UM-Proyecto/PROYECTO_INTEGRADOR, con la misma organización de carpetas que el de Minería de Datos. Las fuentes no se enlazan al otro repositorio: se copian a la carpeta fuentes/ desde el commit c27757a, del 3 de noviembre, y el archivo MANIFIESTO.csv guarda para cada copia la ruta original, el commit y su huella SHA-256. Comparé las diecisiete huellas contra los archivos del repositorio de origen y son idénticas. MANIFIESTO.md registra, para cada una de las siete fuentes, qué es, de qué clase son sus datos, a qué fecha llegan, su permiso de uso y sus limitaciones. Nada de lo que hay en fuentes/ se edita, y un script lo comprueba en cada paso.
+
+Las clases de datos se nombran igual que en el registro de la HU-02. Son FICTICIOS los datos de prueba: MULTIPARTES facilitó una muestra inicial de unos 20 registros y el equipo la amplió con datos de prueba con la misma estructura para poder aplicar y comparar técnicas. Son PUBLICOS los datos de terceros, como las importaciones del INE, las cotizaciones de un agente de carga y el índice de fletes de Shanghái. Es MIXTA la tabla de costos de importación. No hay datos personales, porque los repuestos y proveedores de los datos de prueba tienen códigos ficticios.
+
+## Páginas y compatibilidad con Obsidian
+La wiki tiene un índice que hace de mapa de contenidos, un registro cronológico, la página de objetivos, una página por cada fuente, una por cada indicador, una síntesis por objetivo, la consulta y la revisión de salud. Cada página empieza con metadatos que dicen su tipo, las fuentes que usa, la fecha de corte de sus datos, la clase de esos datos, la naturaleza de su contenido (observado, inferido, supuesto o esperado) y si ya pasó por la revisión. Cada afirmación relevante lleva una de cinco etiquetas (observado, calculado, inferencia, supuesto o esperado) y un enlace al archivo de origen con la fila o la columna.
+
+Después de la primera corrida el equipo pidió que la wiki se pudiera abrir en Obsidian, como una bóveda, y ver en su gráfico. Los enlaces entre páginas pasaron a ser enlaces de Obsidian por nombre de archivo, mientras que las citas a las fuentes siguieron como enlaces Markdown relativos, que son los únicos que funcionan a la vez en Obsidian y en GitHub. El repositorio trae una configuración mínima de Obsidian con el gráfico coloreado por tipo de página. La conversión la hizo un script, y una segunda pasada del mismo script no cambia nada.
+
+## Instrucciones para el agente
+El archivo AGENTS.md, en la raíz, lo redactó el agente en la primera corrida a partir de las reglas del prompt, y lo ajustamos en cada revisión. Fija qué carpetas puede tocar (sólo la wiki y el propio archivo), la estructura y el formato de las páginas, las etiquetas y la forma de citar, los criterios para actualizar una página en vez de crear otra, el tratamiento de las contradicciones, la privacidad y la compatibilidad con Obsidian. Dos reglas salieron de errores de las corridas. La primera prohíbe al agente marcar como revisada una página, porque en la primera corrida marcó así sus propias páginas de fuentes. La segunda le prohíbe editar una página que ya está revisada: el hallazgo se deja anotado para la persona que revisa.
+
+Las contradicciones tienen un código, una sección en cada página afectada y una fila en la tabla del índice con las dos citas, cuál prevalece y por qué, o su estado pendiente. La regla general es que el archivo de origen prevalece sobre un resumen, el criterio aprobado sobre el borrador y el registro de la HU-02 sobre cualquier otra fuente en lo que toca a la clase de un conjunto. Hay una regla de redacción que no admite excepciones: el origen de los datos se describe siempre como la muestra inicial que facilitó MULTIPARTES, ampliada por el equipo con datos de prueba, y si una fuente lo describe de otro modo se cita textual y se registra como contradicción.
+
+# EL PROMPT Y SU MEJORA
+Conservé el prompt genérico de la tarea con sus campos completados en una línea cada uno (docs/u4-t1/prompts/prompt_inicial.md). Al completarlo se vieron siete problemas, y la versión mejorada responde a cada uno. La pregunta de negocio era la pregunta enfocada copiada tal cual y no se podía verificar, así que la reemplacé por la pregunta acotada y agregué qué evidencia hace útil la respuesta. El objetivo único se dividió en los tres objetivos del mapa, cada uno con su indicador, su meta y su fuente. Donde decía «las fuentes de la carpeta» ahora se nombran el repositorio, el commit, la fecha de copia y el código de cada fuente, y se prohíbe salir de esa carpeta y usar internet. Se agregó el vocabulario de clases de datos y la frase correcta sobre la muestra de la empresa. La separación entre hechos, cálculos, inferencias y supuestos pasó a ser un sistema de cinco etiquetas con un formato de cita. El trabajo se dividió en cuatro etapas, y el agente tiene que detenerse al terminar cada una y no hacer commits, para que cada propuesta se revise por separado. Por último, se agregaron criterios de aceptación que se comprueban con un comando.
+
+Después de la primera corrida hubo una segunda versión del prompt, con las reglas de Obsidian y la prohibición de marcar páginas como revisadas. Las dos versiones y la explicación de cada cambio están en docs/u4-t1/prompts/.
+
+# INGESTA INICIAL
+## Cómo trabajó el agente
+Cada corrida la lanzó un script que arma el prompt mejorado con la etapa que corresponde y ejecuta Claude Code en modo no interactivo, con el modelo Opus y una configuración aislada, sin mis instrucciones personales, memoria ni servidores externos. El agente podía leer y editar archivos y correr Python, pero no hacer commits ni usar la red. El script guarda el prompt, la transcripción completa y la respuesta final. La primera corrida la intenté con Codex, el agente que usé en la tarea anterior, pero se cortó al primer comando por falta de cuota, y la dejé como evidencia. Cada corrida tiene dos commits: uno con la propuesta del agente tal como quedó y otro con la revisión, de modo que la diferencia entre los dos muestra exactamente qué se cambió de lo que propuso la IA.
+
+TABLA|Corridas del agente|1.4,2.6,1.4,1.2,1.4,4
+| Corrida | Etapa | Duración | Turnos | Costo (USD) | Resultado |
+| 00 | Intento con Codex | segundos | sin dato | sin dato | Cortado por falta de cuota |
+| 01 | Estructura e ingesta inicial | 6 min 23 s | 30 | 2,06 | AGENTS.md y 15 páginas |
+| 02 | Consulta | 1 min 55 s | 12 | 0,88 | Página Q-01 |
+| 03 | Revisión de salud | 7 min 14 s | 75 | 2,80 | Página R-01 y 11 correcciones |
+| 04 | Segunda ingesta | 7 min 27 s | 83 | 2,89 | Página de F07 y 10 páginas actualizadas |
+NOTA|Elaboración propia a partir de inicio.txt, fin.txt y del resultado final de cada transcripción en docs/u4-t1/evidencia/corridas/.
+
+## Las evidencias y lo que aportaron
+La ingesta inicial tomó dos evidencias principales y las tablas de las que salen las líneas base. La primera es el registro de fuentes de la HU-02, que hace de diccionario de datos: dice qué es cada uno de los diecisiete conjuntos, de dónde viene, de qué clase es y hasta qué fecha llega. Aportó la clase de los datos de cada indicador y la fecha de corte que usa el tercero. La segunda es la definición de los criterios de éxito de la HU-33, que aportó las fórmulas, las metas y las líneas base. Las tablas de apoyo son la comparación de pronósticos de la HU-07 y los costos de importación de la HU-31. La pregunta enfocada y la portada del repositorio completaron el contexto.
+
+El agente creó AGENTS.md, el índice, el registro, la página de objetivos, seis páginas de fuentes, tres de indicadores y tres síntesis, y no modificó ningún otro archivo. Encontró cuatro contradicciones entre fuentes y tres ambigüedades en la definición de los indicadores. La más útil es la del tercer indicador: los criterios no dicen qué conjunto cuenta como «movimientos», y el valor va de 50 días a 10 según cuál se tome.
+
+## Revisión de la primera ingesta
+Recalculé las cifras que trajo el agente y coincidieron, pero hubo que corregir tres cosas. La contradicción C-04 estaba mal planteada: el agente leyó una fila de la portada del repositorio como si describiera la tabla de costos, cuando describe la historia de usuario completa, y por eso vio una contradicción donde no la había. Además había marcado como revisadas sus propias páginas de fuentes, que volvieron a borrador. Y la primera pasada del revisor automático encontró 17 afirmaciones sin cita directa y 10 cifras sin etiqueta, que se completaron.
+
+## Los indicadores
+Los tres indicadores quedaron definidos con fórmula, unidad, granularidad, período, filtros, fuente, meta y línea base fechada, como resume la Tabla 3. Cada página de indicador termina con el comando que reproduce su valor.
+
+TABLA|Definición de los indicadores|1.3,3.2,1.6,2,2.6,1.6
+| Indicador | Fórmula | Unidad | Granularidad | Período y filtros | Meta |
+| KPI-1 | (MAE de la referencia − MAE del método) / MAE de la referencia × 100 | % de mejora | Repuesto por día | 3 meses reservados tras un año de entrenamiento; sólo salidas originales, sin duplicados ni pendientes, y los días sin salidas cuentan como cero | 15 % o más |
+| KPI-2 | Componentes con respaldo documentado / total de componentes × 100 | % de componentes | Componente del costo | Foto al corte de la tabla (9 de octubre); las 15 filas | 80 % o más |
+| KPI-3 | Fecha de la decisión − fecha de corte de los movimientos | Días calendario | Una medición por decisión | Puntual; conjuntos de movimientos de la HU-17 y la HU-30 | 30 días o menos |
+NOTA|Elaboración propia a partir de las páginas de wiki/indicadores/ y de los criterios aprobados de la HU-33.
+
+# CONSULTA Y VERIFICACIÓN
+La segunda corrida le pidió al agente que respondiera la pregunta de negocio leyendo primero el índice y las páginas pertinentes. La respuesta, guardada en wiki/consultas/ y enlazada desde el índice, dice que ninguno de los tres criterios puede respaldar hoy una decisión de compra. El primero no se puede medir, porque las 30 combinaciones de repuesto y método de la HU-07 dicen que no hay selección fiable. El segundo se mide y da 40 % frente a 80 %. El tercero da 50 días frente a 30. La respuesta separa lo que la evidencia sostiene de lo que no y lista seis vacíos, entre ellos que no hay una fecha de decisión real y que no está definido cómo se agregan los repuestos en el primer indicador.
+
+Elegí verificar las tres afirmaciones de la respuesta que traían cifras nuevas, que son las que tendría que defender alguien que sólo leyera la consulta. Las tres se recalculan desde los archivos originales con verificar.py, que escribe el resultado en data/processed/u4-t1/verificaciones.csv. La Tabla 4 resume el resultado.
+
+TABLA|Verificación de tres afirmaciones de la consulta|3.6,3.2,4.6
+| Afirmación | Contra qué | Resultado |
+| La mejora del KPI-1 es 0 % para el promedio móvil y −128,6 % para el mismo día de la semana | MAE por repuesto y método de la HU-07 | Las cifras coinciden, pero la lectura era incorrecta: en los 3 repuestos con ventas los tres métodos empatan |
+| Para cumplir el KPI-3 al 3 de noviembre, el corte debe llegar al 4 de octubre, 20 días después del actual | Registro de la HU-02 y meta de la HU-33 | Coincide |
+| El KPI-2 llegaría a 66,7 % con los 4 componentes pendientes y a 73,3 % contando las estimaciones; la meta pide 12 de 15 | Tabla de costos de la HU-31 | Coincide; se precisó que las estimaciones son cálculos sobre datos del INE |
+NOTA|Elaboración propia. Verificaciones Q1 a Q3 de src/u4-t1/verificar.py.
+
+En la primera verificación las cifras coincidían y la lectura no. La tabla de la consulta mostraba que el método del mismo día de la semana erraba más que la referencia, y las cifras estaban bien calculadas. Pero al separar los repuestos según tuvieran ventas en el periodo evaluado, resultó que en los tres que sí vendieron los tres métodos dan exactamente el mismo error, 0,467 unidades por día. Toda la diferencia del promedio viene de dos repuestos que no vendieron nada, en los que ese método pronosticó ventas. La afirmación implícita de que ese método es peor no se sostiene, y la corregí en la consulta, en la página del indicador, en la de la fuente y en la síntesis del primer objetivo.
+
+# REVISIÓN DE SALUD
+La tercera corrida pidió una revisión de enlaces rotos, páginas aisladas, duplicados, contradicciones, afirmaciones sin fuente, indicadores ambiguos y datos desactualizados. El revisor automático, salud.py, ya daba cero en sus once controles, y el agente lo dijo así: que los controles den cero no significa que la wiki esté sana, porque el script mira la forma y no compara una página con otra ni con la fuente. Leyendo cada página contra las fuentes encontró trece problemas, corrigió once y dejó dos pendientes que no le correspondía tocar.
+
+Dos de los hallazgos corrigen mi propia revisión de la primera ingesta. Al resolver C-04 yo había escrito que la historia de los costos de importación tiene dos conjuntos de datos, y el registro le asigna tres. Y había explicado que la tabla de costos es mixta porque combina valores publicados con estimaciones, un motivo que no aparece en ninguna fuente: el manifiesto y la portada del repositorio definen como mixta la combinación de datos públicos con datos de prueba, y la tabla no tiene datos de prueba. El agente no reabrió C-04, porque lo que resolvió sigue siendo cierto, y registró el problema nuevo como C-05, con las dos referencias y pendiente de que el responsable de esa historia decida la clase.
+
+Los otros hallazgos fueron una fecha límite mal escrita en una síntesis, un conjunto de datos de seguro que la wiki no mencionaba, una lectura incompleta de por qué ningún método de pronóstico queda seleccionado (además del historial corto, ningún repuesto tiene tres días con ventas en el entrenamiento), tres diferencias de redacción entre la portada y los criterios, etiquetas equivocadas, once afirmaciones sin etiqueta y un índice desactualizado. Uno de ellos es de vigencia y no lo habría visto el script: la fecha de corte del conjunto de referencias de flete es el 9 de octubre, pero cinco de sus seis filas son cotizaciones de junio, con 154 días de antigüedad. Los dos pendientes los resolví en la revisión: actualicé un aviso de la consulta que el agente no podía editar y adopté su propuesta para el campo de fecha en las páginas que combinan conjuntos.
+
+# SEGUNDA INGESTA
+La evidencia nueva fue la descripción de los datos simulados de la HU-34, con su archivo de ventas diarias por repuesto y la guía de limpieza. Entró como fuente F07, copiada del mismo commit y con su huella en el manifiesto, y la cuarta corrida la integró: creó su página, actualizó las que dependen de ella y dejó en cada una qué cambió. La Tabla 5 compara la wiki antes y después de esta ingesta, medida con un script sobre los dos commits.
+
+TABLA|La wiki antes y después de la segunda ingesta|4,2.5,2.5
+| Aspecto | Antes | Después |
+| Páginas | 17 | 18 |
+| Páginas modificadas por la ingesta | | 11 |
+| Enlaces entre páginas | 186 | 243 |
+| Citas a archivos de fuentes | 204 | 257 |
+| Contradicciones registradas | 5 | 6 |
+| KPI-1 | No medible: no hay un historial de un año | No medible: el historial de prueba existe, falta correr la comparación |
+| KPI-2 | 40 % | 40 % |
+| KPI-3 | 50 días; conjunto de movimientos sin acotar | 50 días con la definición vigente; 10 con las ventas de la HU-34 |
+NOTA|Elaboración propia con src/u4-t1/comparar_ingestas.py entre los commits 758489d y el de la revisión 04 (data/processed/u4-t1/comparacion_ingesta2.txt).
+
+Ningún valor cambió, pero sí el diagnóstico de dos indicadores. Para el primero, el problema dejó de ser la falta de un historial largo: las ventas de prueba de la HU-34 cubren 662 días seguidos de 30 repuestos, y reservando los tres últimos meses cada repuesto tiene al menos 246 días con ventas en el año de entrenamiento. Lo que falta es correr la comparación de métodos sobre ese historial y acordar la regla de selección, porque la herramienta de la HU-07 pide doce meses de entrenamiento y doce reservados, más de lo que hay. Para el tercero, la ambigüedad quedó acotada a cinco candidatos con su valor, de 10 a 50 días.
+
+La fuente nueva contradice a una anterior. La descripción de la HU-34 dice que no se proporcionaron bases empresariales reales para esa actividad, mientras que la portada del repositorio dice que MULTIPARTES facilitó una muestra inicial de unos 20 registros. El agente citó la frase textual, registró la contradicción como C-06 con las dos referencias, hizo prevalecer la portada para el origen de los datos del proyecto y leyó la frase de la HU-34 como limitada a esa historia. Las dos fuentes coinciden en que los datos son de prueba, así que no cambia ninguna cifra, y queda pendiente que la responsable de la HU-34 ajuste la redacción.
+
+# PASOS CONSIGUIENTES
+## Qué decisión puede apoyarse ahora
+Con la wiki se puede apoyar hoy una decisión del propio proyecto, que es qué datos pedirle a MULTIPARTES y en qué orden. La wiki muestra que las facturas de los cuatro componentes pendientes del costo (seguro, nacionalización y agente aduanero, comisiones y flete terrestre hasta Santa Cruz) son el insumo que más acerca un criterio a su meta, y que aun así hacen falta dos documentos más para llegar al 80 %. También se puede apoyar una comparación preliminar de los medios de transporte desde China con referencias públicas, por ejemplo entre el flete de un contenedor de 20 pies (de 4.797 a 5.870 dólares) y el aéreo (11 dólares por kilo), siempre como orden de magnitud y no como tarifa de la empresa. La decisión de compra en sí, qué repuesto pedir, cuánto y cuándo, sigue sin evidencia suficiente: el pronóstico no se puede medir, el costo puesto en Santa Cruz tiene cuatro componentes sin dato y los datos de movimientos están vencidos.
+
+## Qué cambió entre la primera y la segunda ingesta
+El hallazgo que cambió fue el diagnóstico del primer indicador. Después de la primera ingesta, lo que impedía medirlo era la falta de un historial de un año más tres meses. Después de la segunda, ese historial existe como dato de prueba (662 días, al menos 246 con ventas por repuesto en el año de entrenamiento), y lo que impide medirlo es que nadie corrió la comparación sobre él y que las dos reglas de selección del proyecto no coinciden. También cambió el tercer indicador, cuyo valor ahora se sabe que depende de una definición: 50 días con los movimientos que nombran los criterios y 10 con las ventas de la HU-34. Se confirmaron, con el mismo recálculo, los valores de los tres indicadores y el 40 % del segundo, que no depende de la fuente nueva.
+
+## Qué falta para cada resultado esperado
+Para el pronóstico faltan tres cosas: correr la comparación de métodos sobre el historial de ventas de la HU-34 con tres meses reservados, acordar una sola regla de selección y, para que el resultado hable de la empresa y no del método, un historial real de salidas de MULTIPARTES. Para el costo con respaldo faltan las facturas de los cuatro componentes pendientes y al menos dos documentos que reemplacen estimaciones del INE, además de la URL de descarga del INE, que no está en el repositorio, y de una decisión sobre la clase de la tabla de costos (C-05). Para la vigencia de los datos falta que el equipo fije qué conjunto cuenta como movimientos, una carga con corte reciente y una fecha de decisión de compra registrada, porque hoy la wiki usa la fecha de la consulta como supuesto.
+
+## Los tres pasos siguientes
+La Tabla 6 ordena los tres pasos por prioridad. El primero va antes porque sin definiciones fijas los otros dos producirían valores que no se pueden comparar con la meta.
+
+TABLA|Pasos siguientes en orden de prioridad|0.6,2.8,1.8,2.8,2.8,3
+| N.º | Paso | Responsable | Insumo | Producto verificable | Criterio de finalización |
+| 1 | Fijar el conjunto de movimientos del KPI-3 y una sola regla de selección para el KPI-1 | Samuel Castillo, con el equipo | La tabla de candidatos del KPI-3 y la contradicción C-02 | Criterios aprobados de la HU-33 actualizados en el repositorio de Minería de Datos | La versión nueva entra como fuente, el KPI-3 tiene un solo valor y C-02 figura como resuelta en el índice |
+| 2 | Correr la comparación de pronósticos sobre las ventas de la HU-34 | Fiorella Sandoval | El archivo de ventas, tres meses reservados y la regla del paso 1 | Una tabla de error por método y repuesto en el repositorio | El KPI-1 tiene un valor calculado, marcado como prueba del método, y verificar.py lo reproduce |
+| 3 | Pedir a MULTIPARTES las facturas de los cuatro componentes pendientes y decidir la clase de la tabla de costos | Samuel Castillo, con el jefe de compras | Las filas pendientes de la tabla de costos y la contradicción C-05 | Tabla de costos actualizada con su respaldo | El KPI-2 se recalcula con los documentos nuevos y C-05 queda resuelta |
+NOTA|Elaboración propia. Responsables según las historias de usuario a cargo de cada integrante.
+
+## Cómo se mantendrá actualizada la wiki
+La wiki se actualiza siempre por el mismo camino, que es el que se usó con la segunda ingesta. Cuando cambian los datos o una definición en el repositorio de Minería de Datos, la versión nueva se copia a fuentes/ en una carpeta nueva, sin pisar la anterior, se regenera el manifiesto y se corre la etapa de ingesta con el prompt. El agente propone los cambios y deja en cada página afectada una sección con lo que cambió; la revisión recalcula las cifras nuevas, agrega las verificaciones a verificar.py y acepta o corrige antes del commit. Cuando cambia un resultado, como el valor de un indicador, se actualiza su página, la síntesis del objetivo y el mapa, y la conclusión anterior queda explicada en la sección de cambios, no borrada. Al final de cada sprint se corre la revisión de salud, con el script y con la lectura del agente, porque ya se vio que el script solo no alcanza, y se recalcula el tercer indicador, que cambia con el calendario aunque no cambien los datos. Todo queda en el registro de la wiki y en el historial de git.
+
+# CONCLUSIONES Y RECOMENDACIONES
+La wiki cumple su propósito para el proyecto. Conecta en un mismo lugar la pregunta, los tres criterios de éxito, las fuentes de las que sale cada valor y lo que falta para cada uno. Cualquiera puede recorrer el camino desde una cifra hasta el archivo y la columna de donde sale, y repetir el cálculo con un comando. La respuesta a la pregunta de negocio es negativa, porque ningún criterio respalda todavía una decisión de compra, pero es una respuesta útil: dice qué pedirle a la empresa y en qué orden.
+
+Lo que más pesó en el resultado fue revisar cada corrida antes de aceptarla. El agente hizo bien la mayor parte del trabajo y encontró cosas que yo no había visto, como la ambigüedad del tercer indicador y la antigüedad real de las cotizaciones. También se equivocó, al plantear una contradicción que no existía y al marcar como revisado su propio trabajo, y llegó a una conclusión sobre los métodos de pronóstico que las cifras no sostenían. A su vez, la revisión de salud del agente encontró dos errores en mi revisión anterior. Cada parte revisó a la otra, y en el historial quedó registrado quién cambió qué.
+
+Recomiendo tres cosas. La primera es mantener la regla de una corrida por etapa con su commit propio, porque es lo que permite mostrar que la IA no fue una caja negra. La segunda es no confiar en el revisor automático solo, que daba cero con trece problemas adentro. La tercera es completar los tres pasos de la Tabla 6 antes de la próxima ingesta, empezando por las definiciones.
+
+# REFERENCIAS
+@REF Anthropic. (2026). *Claude Code* (versión 2.1.318) [Software]. https://claude.com/claude-code
+@REF Castillo Cornejo, S., Sandoval Castro, F. y Adrian Zelaya, S. (2026). *Minería de Datos: apoyo a las decisiones de compra de MULTIPARTES* [Repositorio de datos y código, commit c27757a]. GitHub. https://github.com/UM-Proyecto/MINERIA_DATOS
+@REF Castillo Cornejo, S., Sandoval Castro, F. y Adrian Zelaya, S. (2026). *Proyecto Integrador: apoyo a las decisiones de compra de MULTIPARTES* [Repositorio]. GitHub. https://github.com/UM-Proyecto/PROYECTO_INTEGRADOR
+@REF Karpathy, A. (s.f.). *LLM Wiki* [Gist]. GitHub. https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+
+# ANEXOS
+## Reproducción de las verificaciones
+Todo se corre desde la raíz del repositorio con Python 3.10 o superior y sólo la biblioteca estándar, y cada script sale con código 1 si encuentra un problema. El comando python3 src/u4-t1/manifiesto.py comprueba que las diecisiete copias de fuentes/ no cambiaron. El comando python3 src/u4-t1/verificar.py recalcula desde las fuentes las doce cifras verificadas (V1 a V5, Q1 a Q3 con la corrección Q1b, e I2-1 a I2-3) y deja el resultado en data/processed/u4-t1/verificaciones.csv. El comando python3 src/u4-t1/salud.py corre los once controles de forma de la wiki. Las pruebas se corren con python3 -m unittest discover -s tests, e incluyen una wiki armada con una falla de cada tipo para comprobar que el revisor no da cero por estar roto. El detalle de cada script y cómo repetir una corrida del agente están en docs/u4-t1/REPRODUCIR.md.
+
+## Dónde está cada evidencia
+Los prompts están en docs/u4-t1/prompts/. La evidencia de cada corrida (prompt, transcripción completa, respuesta y estado final de los archivos) está en docs/u4-t1/evidencia/corridas/, y las notas de cada revisión, con lo que se comprobó y lo que se cambió, en docs/u4-t1/evidencia/revisiones/. El registro cronológico de la wiki es wiki/log.md. La propuesta del agente y la revisión de cada etapa se pueden comparar con git diff entre el commit de la corrida y el de su revisión.
