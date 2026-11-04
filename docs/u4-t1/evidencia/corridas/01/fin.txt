@@ -1,0 +1,5 @@
+exit=0
+2026-11-03T21:14:32-04:00
+?? AGENTS.md
+?? docs/u4-t1/evidencia/corridas/01/
+?? wiki/
