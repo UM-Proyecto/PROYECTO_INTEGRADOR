@@ -19,7 +19,7 @@ tags: [hallazgo, ficticio]
 ## Qué se sabe
 
 - [OBSERVADO] El equipo comparó tres técnicas de pronóstico (último periodo, promedio móvil de 3 días, mismo día de la semana anterior) en 10 repuestos con 14 días de movimientos de septiembre ([F04](../../fuentes/F04_pronosticos_HU07/README.md), párrafos cuarto y sexto).
-- [CALCULADO] El MAE medio sobre esos datos FICTICIOS es 0,14, 0,14 y 0,32 unidades por día; ninguna técnica mejora a la referencia ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columna `mae`; cálculo en [[KPI-1-mejora-mae-pronostico|KPI-1]]).
+- [CALCULADO] El MAE medio sobre esos datos FICTICIOS es 0,14, 0,14 y 0,32 unidades por día; ninguna técnica mejora a la referencia, y en los 3 repuestos con ventas las tres empatan en 0,467 ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columna `mae`; cálculo en [[KPI-1-mejora-mae-pronostico|KPI-1]]).
 - [OBSERVADO] Ninguna de las 30 combinaciones repuesto-método queda seleccionada; todas dicen SIN_SELECCION_FIABLE ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columna `seleccion`).
 
 ## Qué significa para la decisión

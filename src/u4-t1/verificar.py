@@ -78,6 +78,47 @@ def v5():
     return (frase in t, "segundo semestre del 2026" in t), (True, True)
 
 
+# Verificaciones de la consulta Q-01 (revisión 02)
+
+@verif("Q1", "Q-01, KPI-1: la mejora frente a «último periodo» es 0 % para el promedio móvil y -128,6 % para el mismo día de la semana (MAE medio de 10 repuestos)",
+       "F04 comparacion_pronosticos.csv, columnas metodo y mae")
+def q1():
+    r = leer("F04_pronosticos_HU07/comparacion_pronosticos.csv")
+    media = {m: sum(float(x["mae"]) for x in r if x["metodo"] == m) / 10 for m in ("ultimo_periodo", "promedio_movil_3", "mismo_dia_semana")}
+    b = media["ultimo_periodo"]
+    return (round((b - media["promedio_movil_3"]) / b * 100, 1), round((b - media["mismo_dia_semana"]) / b * 100, 1)), (0.0, -128.6)
+
+
+@verif("Q1b", "Q-01, corrección: en los 3 repuestos con ventas en la evaluación los tres métodos empatan (MAE medio 0,467); "
+       "todo el -128,6 % sale de 2 repuestos sin ventas en los que «mismo día de la semana» pronosticó ventas",
+       "F04 comparacion_pronosticos.csv, columnas codigo_unico, metodo, mae y dias_con_ventas_evaluacion")
+def q1b():
+    r = leer("F04_pronosticos_HU07/comparacion_pronosticos.csv")
+    con = {x["codigo_unico"] for x in r if x["metodo"] == "ultimo_periodo" and x["dias_con_ventas_evaluacion"] != "0"}
+    medias = sorted({round(sum(float(x["mae"]) for x in r if x["metodo"] == m and x["codigo_unico"] in con) / len(con), 3)
+                     for m in ("ultimo_periodo", "promedio_movil_3", "mismo_dia_semana")})
+    sin_ventas_con_error = sorted(x["codigo_unico"] for x in r
+                                  if x["codigo_unico"] not in con and float(x["mae"]) > 0)
+    return (len(con), medias, sin_ventas_con_error), (3, [0.467], ["REP-0001", "REP-0003"])
+
+
+@verif("Q2", "Q-01, KPI-3: para cumplir la meta al 3-nov-2026 el corte debe llegar al 2026-10-04; el actual (2026-09-14) está 20 días antes",
+       "F02 registro_actualizaciones.csv, fila movimientos_inventario; meta de 30 días de F03")
+def q2():
+    corte = {r["conjunto"]: r for r in leer("F02_registro_fuentes_HU02/registro_actualizaciones.csv")}["movimientos_inventario"]["fecha_corte_datos"]
+    limite = (dt.date(2026, 11, 3) - dt.timedelta(days=30)).isoformat()
+    return (limite, dias(corte, limite)), ("2026-10-04", 20)
+
+
+@verif("Q3", "Q-01, KPI-2: con los 4 pendientes documentados se llega a 66,7 %; contando además las 5 estimaciones del INE, a 73,3 %; la meta pide 12 de 15",
+       "F05 hu31_costos_importacion.csv, columna tipo_dato; meta de F03")
+def q3():
+    c = Counter(r["tipo_dato"] for r in leer("F05_costos_importacion_HU31/hu31_costos_importacion.csv"))
+    t = sum(c.values())
+    return (round(100 * (c["DOCUMENTADO"] + c["PENDIENTE"]) / t, 1), round(100 * (c["DOCUMENTADO"] + c["ESTIMACION"]) / t, 1),
+            int(0.8 * t)), (66.7, 73.3, 12)
+
+
 def main():
     filas, fallas = [], 0
     for codigo, afirm, fuente, fn in VERIF:

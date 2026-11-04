@@ -77,3 +77,11 @@ Registro cronológico. Sólo se agregan entradas al final; las anteriores no se 
 - C-02 sigue pendiente; el conjunto de movimientos de KPI-3 y la regla de agregación de KPI-1 siguen sin fijar.
 - La HU-36 (284 días) no está en `fuentes/`, y aunque llegara no alcanza el año más 3 meses de F03.
 - Q-01 queda en `revision: borrador` hasta la revisión humana.
+
+## 2026-11-03. Etapa 2: consulta (corrida 02) y revisión humana
+
+**Agente:** Claude Code (Claude Opus 5.5), prompt mejorado versión 2. Creó [[Q-01-criterios-hu33-al-3-nov|Q-01]] y la enlazó desde [[index]] y [[objetivos]].
+
+**Respuesta:** ninguno de los tres criterios de la HU-33 respalda hoy una decisión de compra. KPI-1 no es medible, KPI-2 está en 40 % frente a 80 % y KPI-3 en 50 días frente a 30.
+
+**Revisión humana (notas en `docs/u4-t1/evidencia/revisiones/02.md`):** se verificaron tres afirmaciones de la respuesta contra `fuentes/` con `src/u4-t1/verificar.py` (Q1 a Q3). Las cifras coinciden. La lectura de KPI-1 estaba incompleta: el −128,6 % de «mismo día de la semana» no muestra que ese método sea peor, porque en los 3 repuestos con ventas los tres métodos empatan en 0,467 y toda la diferencia sale de dos repuestos sin ventas. Se corrigió en Q-01, [[KPI-1-mejora-mae-pronostico|KPI-1]], [[F04-pronosticos-hu07|F04]] y [[O-1-cuanto-se-vendera|O-1]]. También se precisó que las 5 estimaciones de KPI-2 son cálculos sobre datos públicos, no valores publicados. Q-01 queda como revisada.

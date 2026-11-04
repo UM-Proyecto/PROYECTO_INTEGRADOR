@@ -35,7 +35,7 @@ tags: [fuente, ficticio]
 | MAE medio, promedio móvil de 3 días | 0,14 unidades/día (suma 1,4 / 10) | [CALCULADO] |
 | MAE medio, mismo día de la semana | 0,32 unidades/día (suma 3,2 / 10) | [CALCULADO] |
 
-Fuente de todas las filas: [F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `metodo`, `mae`, `seleccion` y `dias_con_ventas_evaluacion`. El MAE medio entre repuestos es un agregado que hace la wiki; F04 no lo publica.
+Fuente de todas las filas: [F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `metodo`, `mae`, `seleccion` y `dias_con_ventas_evaluacion`. El MAE medio entre repuestos es un agregado que hace la wiki; F04 no lo publica. Ese promedio mezcla repuestos con y sin ventas en la evaluación: en los 3 con ventas los tres métodos empatan en 0,467 (ver [[Q-01-criterios-hu33-al-3-nov#Verificación (revisión 02)|Q-01]]).
 
 - [INFERENCIA] Con 7 de 10 repuestos sin ventas en evaluación, un MAE de cero no valida ningún método; el propio CSV lo dice en la columna `limitaciones` («sin ventas registradas en evaluacion: MAE cero no valida el metodo»).
 

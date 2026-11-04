@@ -5,7 +5,7 @@ fuentes: [F02, F03, F04, F05, F06]
 fecha: 2026-10-09
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: inferido
-revision: borrador
+revision: revisado
 actualizado: 2026-11-03
 tags: [hallazgo, consulta, ficticio, publico, mixto]
 ---
@@ -28,8 +28,8 @@ Metas y líneas base de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_A
 
 | Criterio | Meta | Línea base (26-oct-2026) | Valor al 3-nov-2026 | Estado | Clase de los datos | ¿Respalda la decisión hoy? |
 |---|---|---|---|---|---|---|
-| [[KPI-1-mejora-mae-pronostico|KPI-1]]. Mejora del MAE frente a «último periodo» | [ESPERADO] ≥ 15 % con un año de historial y 3 meses reservados | [OBSERVADO] «Sin método elegible» | [CALCULADO] Sin método elegido; como prueba del cálculo, 0 % (promedio móvil) y −128,6 % (mismo día de la semana) sobre una ventana de 5 días ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `metodo` y `mae`) | No medible | FICTICIO | No |
-| [[KPI-2-costo-con-respaldo|KPI-2]]. Componentes del costo con respaldo | [ESPERADO] ≥ 80 % | [OBSERVADO] 6 de 15 (40 %) | [CALCULADO] 6 / 15 = 40 % ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato`) | No cumple: faltan 6 componentes | MIXTO; los 6 documentados y las 5 estimaciones son PUBLICOS | No |
+| [[KPI-1-mejora-mae-pronostico|KPI-1]]. Mejora del MAE frente a «último periodo» | [ESPERADO] ≥ 15 % con un año de historial y 3 meses reservados | [OBSERVADO] «Sin método elegible» | [CALCULADO] Sin método elegido; como prueba del cálculo, 0 % (promedio móvil) y −128,6 % (mismo día de la semana) sobre una ventana de 5 días ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `metodo` y `mae`). En los 3 repuestos con ventas los tres métodos empatan (ver «Verificación») | No medible | FICTICIO | No |
+| [[KPI-2-costo-con-respaldo|KPI-2]]. Componentes del costo con respaldo | [ESPERADO] ≥ 80 % | [OBSERVADO] 6 de 15 (40 %) | [CALCULADO] 6 / 15 = 40 % ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato`) | No cumple: faltan 6 componentes | MIXTO; los 6 documentados son valores PUBLICOS y las 5 estimaciones son cálculos sobre datos PUBLICOS del INE | No |
 | [[KPI-3-vigencia-datos|KPI-3]]. Días entre el corte de movimientos y la decisión | [ESPERADO] ≤ 30 días | [OBSERVADO] 42 días | [CALCULADO] 2026-11-03 − 2026-09-14 = 50 días ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `movimientos_inventario`, columna `fecha_corte_datos`) | No cumple: 20 días de más | FICTICIO | No |
 
 ## Lo que la evidencia sostiene
@@ -43,7 +43,8 @@ Metas y líneas base de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_A
 
 ## Lo que la evidencia no sostiene
 
-- [INFERENCIA] Que alguna técnica de pronóstico sea mejor que «último periodo». El 0 % de mejora del promedio móvil sale de 5 días de datos FICTICIOS y no es un resultado sobre la demanda de MULTIPARTES.
+- [INFERENCIA] Que alguna técnica de pronóstico sea mejor o peor que «último periodo». El 0 % de mejora del promedio móvil sale de 5 días de datos FICTICIOS y no es un resultado sobre la demanda de MULTIPARTES.
+- [CALCULADO] Que «mismo día de la semana» sea peor. Su −128,6 % sale entero de REP-0001 y REP-0003, dos repuestos sin ventas en la evaluación en los que pronosticó ventas (MAE 1,0 y 0,8); en los 3 repuestos con ventas los tres métodos dan el mismo MAE, 0,467 unidades por día ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `codigo_unico`, `metodo`, `mae` y `dias_con_ventas_evaluacion`). Corregido en la revisión 02.
 - [INFERENCIA] Un costo puesto en Santa Cruz. Con lo que hay se comparan órdenes de magnitud del flete principal entre medios, pero faltan los cuatro componentes de llegada y nacionalización ([[O-2-cuanto-cuesta-traerlo|O-2]]).
 - [INFERENCIA] Que los datos de MULTIPARTES estén atrasados. Los 50 días de KPI-3 miden la vigencia de datos de prueba del equipo, no la de los sistemas de la empresa.
 - [CALCULADO] Que KPI-3 «cumpla». Con el conjunto `ventas_simuladas` (FICTICIO, corte 2026-10-24) el valor sería 10 días y cumpliría ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `ventas_simuladas`), pero F03 define el indicador con los movimientos al 14-sep; usar el otro conjunto sería cambiar la definición sin acuerdo del equipo (ambigüedad 1 de [[KPI-3-vigencia-datos#Ambigüedades|KPI-3]]).
@@ -66,6 +67,16 @@ Metas y líneas base de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_A
 4. [INFERENCIA] F03 acepta «publicación» como respaldo; si las 5 estimaciones del INE se contaran como documentadas, KPI-2 subiría a 11 / 15 = 73,3 % y seguiría sin cumplir. La línea base de F03 no las cuenta.
 5. [OBSERVADO] C-02 sigue pendiente: F03 pide un año más 3 meses reservados y F04 exige 12 meses más 12 meses para seleccionar un método ([[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]]).
 6. [OBSERVADO] El archivo del INE con su URL de descarga no está en `fuentes/`, así que las 5 estimaciones no se pueden recalcular desde su origen ([manifiesto](../../fuentes/MANIFIESTO.md), fila F05).
+
+## Verificación (revisión 02)
+
+Tres afirmaciones de esta respuesta se contrastaron con los archivos originales de `fuentes/` y con cálculos reproducibles en `src/u4-t1/verificar.py` (códigos Q1 a Q3; la salida queda en `data/processed/u4-t1/verificaciones.csv`). Las notas de la revisión están en `docs/u4-t1/evidencia/revisiones/02.md`.
+
+| Código | Afirmación de la respuesta | Contra qué | Resultado |
+|---|---|---|---|
+| Q1 y Q1b | KPI-1: mejora de 0 % (promedio móvil) y −128,6 % (mismo día de la semana) | [F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), MAE por repuesto y método | [CALCULADO] Las cifras coinciden, pero la lectura estaba incompleta: en los 3 repuestos con ventas los métodos empatan (0,467) y el −128,6 % sale de 2 repuestos sin ventas. Se corrigió la tabla y se agregó la afirmación a «Lo que la evidencia no sostiene» |
+| Q2 | KPI-3: el corte tendría que llegar al 2026-10-04 y el actual está 20 días antes | [F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `movimientos_inventario`; meta de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md) | [CALCULADO] Coincide |
+| Q3 | KPI-2: 66,7 % con los 4 pendientes, 73,3 % contando las estimaciones, meta de 12 de 15 | [F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato` | [CALCULADO] Coincide. Se precisó que las 5 estimaciones no son valores publicados sino cálculos sobre datos del INE |
 
 ## Cómo recalcular
 
