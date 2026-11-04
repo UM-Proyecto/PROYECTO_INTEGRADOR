@@ -1,12 +1,12 @@
 páginas: 17 -> 18; nuevas: ['wiki/fuentes/F07-datos-simulados-hu34.md']
-wikilinks: 186 -> 238
-citas a fuentes/: 204 -> 255
+wikilinks: 186 -> 243
+citas a fuentes/: 204 -> 257
 contradicciones en el índice: ['C-01', 'C-02', 'C-03', 'C-04', 'C-05'] -> ['C-01', 'C-02', 'C-03', 'C-04', 'C-05', 'C-06']
-páginas modificadas: 10: ['wiki/fuentes/F01-pregunta-enfocada.md', 'wiki/fuentes/F02-registro-fuentes-hu02.md', 'wiki/fuentes/F06-portada-repositorio.md', 'wiki/index.md', 'wiki/indicadores/KPI-1-mejora-mae-pronostico.md', 'wiki/indicadores/KPI-3-vigencia-datos.md', 'wiki/log.md', 'wiki/objetivos.md', 'wiki/sintesis/O-1-cuanto-se-vendera.md', 'wiki/sintesis/O-3-datos-al-dia.md']
+páginas modificadas: 11: ['wiki/consultas/Q-01-criterios-hu33-al-3-nov.md', 'wiki/fuentes/F01-pregunta-enfocada.md', 'wiki/fuentes/F02-registro-fuentes-hu02.md', 'wiki/fuentes/F06-portada-repositorio.md', 'wiki/index.md', 'wiki/indicadores/KPI-1-mejora-mae-pronostico.md', 'wiki/indicadores/KPI-3-vigencia-datos.md', 'wiki/log.md', 'wiki/objetivos.md', 'wiki/sintesis/O-1-cuanto-se-vendera.md', 'wiki/sintesis/O-3-datos-al-dia.md']
   páginas que citan F01: 3 -> 3
   páginas que citan F02: 12 -> 13
   páginas que citan F03: 10 -> 11
   páginas que citan F04: 7 -> 8
   páginas que citan F05: 8 -> 8
   páginas que citan F06: 11 -> 12
-  páginas que citan F07: 0 -> 9
+  páginas que citan F07: 0 -> 10

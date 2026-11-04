@@ -1,0 +1,11 @@
+páginas: 15 -> 17; nuevas: ['wiki/consultas/Q-01-criterios-hu33-al-3-nov.md', 'wiki/revisiones/R-01-salud-3-nov.md']
+wikilinks: 0 -> 186
+citas a fuentes/: 144 -> 204
+contradicciones en el índice: ['C-01', 'C-02', 'C-03', 'C-04'] -> ['C-01', 'C-02', 'C-03', 'C-04', 'C-05']
+páginas modificadas: 15: ['wiki/fuentes/F01-pregunta-enfocada.md', 'wiki/fuentes/F02-registro-fuentes-hu02.md', 'wiki/fuentes/F03-criterios-exito-hu33.md', 'wiki/fuentes/F04-pronosticos-hu07.md', 'wiki/fuentes/F05-costos-importacion-hu31.md', 'wiki/fuentes/F06-portada-repositorio.md', 'wiki/index.md', 'wiki/indicadores/KPI-1-mejora-mae-pronostico.md', 'wiki/indicadores/KPI-2-costo-con-respaldo.md', 'wiki/indicadores/KPI-3-vigencia-datos.md', 'wiki/log.md', 'wiki/objetivos.md', 'wiki/sintesis/O-1-cuanto-se-vendera.md', 'wiki/sintesis/O-2-cuanto-cuesta-traerlo.md', 'wiki/sintesis/O-3-datos-al-dia.md']
+  páginas que citan F01: 3 -> 3
+  páginas que citan F02: 11 -> 12
+  páginas que citan F03: 9 -> 10
+  páginas que citan F04: 5 -> 7
+  páginas que citan F05: 5 -> 8
+  páginas que citan F06: 8 -> 11
