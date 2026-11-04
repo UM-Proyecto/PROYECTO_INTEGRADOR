@@ -1,15 +1,18 @@
 ---
 tipo: indicador
+subtipo: indicador
 fuentes: [F03, F02]
-fecha_datos: 2026-09-14
+fecha: 2026-09-14
 clase_datos: [FICTICIO]
-estado: borrador
+estado: esperado
+revision: borrador
 actualizado: 2026-11-03
+tags: [indicador, ficticio]
 ---
 
 # KPI-3. Días entre el corte de los movimientos y la decisión de compra
 
-**Objetivo:** [O3, con datos al día](../sintesis/O-3-datos-al-dia.md). **Criterio:** HU-33, criterio 3 ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 3).
+**Objetivo:** [[O-3-datos-al-dia|O3, con datos al día]]. **Criterio:** HU-33, criterio 3 ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 3).
 
 > Las fechas de corte que usa este indicador son de conjuntos FICTICIOS. El cálculo prueba cómo se medirá la vigencia; no dice cuán al día están los datos reales de MULTIPARTES.
 
@@ -30,7 +33,7 @@ actualizado: 2026-11-03
 
 - [SUPUESTO] Se toma como fecha de decisión el 3-nov-2026, que es la fecha de la pregunta de negocio de la wiki. No hay una decisión de compra fechada en las fuentes.
 - [CALCULADO] 2026-11-03 − 2026-09-14 = **50 días** ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), filas `movimientos_inventario` e `historial_movimientos`, columna `fecha_corte_datos`).
-- [CALCULADO] **Estado frente a la meta: no cumple** (50 días frente a 30). Como el corte no se movió, el valor sube un día por cada día que pasa; ya superaba la meta en la línea base.
+- [CALCULADO] **Estado frente a la meta: no cumple** (50 días frente a 30; [F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `movimientos_inventario`, y [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 3). Como el corte no se movió, el valor sube un día por cada día que pasa; ya superaba la meta en la línea base.
 - [CALCULADO] Para cumplir la meta al 3-nov-2026, los movimientos tendrían que llegar al menos al 2026-10-04 (3-nov menos los 30 días de la meta de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 3).
 
 ## Ambigüedades

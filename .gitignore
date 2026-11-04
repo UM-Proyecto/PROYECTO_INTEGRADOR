@@ -1,2 +1,7 @@
 __pycache__/
 informe/build/
+# Obsidian: sólo se versiona la configuración mínima de la bóveda
+.obsidian/*
+!.obsidian/app.json
+!.obsidian/graph.json
+.trash/

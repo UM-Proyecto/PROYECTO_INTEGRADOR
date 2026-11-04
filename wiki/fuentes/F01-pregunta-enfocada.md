@@ -1,10 +1,13 @@
 ---
 tipo: fuente
+subtipo: fuente
 fuentes: [F01]
-fecha_datos: 2026-10-14
+fecha: 2026-10-14
 clase_datos: []
-estado: borrador
+estado: observado
+revision: borrador
 actualizado: 2026-11-03
+tags: [fuente]
 ---
 
 # F01. Pregunta enfocada y objetivo general
@@ -21,7 +24,7 @@ No contiene datos; describe la pregunta y el objetivo del proyecto. Por eso no t
 
 ## Cómo se usa en la wiki
 
-- [INFERENCIA] F01 fija el objetivo general pero no nombra al usuario ni la decisión concreta. La wiki lo divide en tres objetivos (O1, O2, O3), uno por cada criterio aprobado en la HU-33 ([F03](F03-criterios-exito-hu33.md)). El mapa está en [objetivos.md](../objetivos.md).
+- [INFERENCIA] F01 fija el objetivo general pero no nombra al usuario ni la decisión concreta. La wiki lo divide en tres objetivos (O1, O2, O3), uno por cada criterio aprobado en la HU-33 ([[F03-criterios-exito-hu33|F03]]). El mapa está en [[objetivos]].
 - [INFERENCIA] F01 no define indicadores ni metas; esos vienen de F03.
 
 ## Contradicciones

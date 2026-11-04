@@ -1,15 +1,18 @@
 ---
 tipo: indicador
+subtipo: indicador
 fuentes: [F03, F04, F02]
-fecha_datos: 2026-09-14
+fecha: 2026-09-14
 clase_datos: [FICTICIO]
-estado: borrador
+estado: esperado
+revision: borrador
 actualizado: 2026-11-03
+tags: [indicador, ficticio]
 ---
 
 # KPI-1. Mejora del MAE del pronóstico frente a «último periodo»
 
-**Objetivo:** [O1, cuánto se va a vender](../sintesis/O-1-cuanto-se-vendera.md). **Criterio:** HU-33, criterio 1 ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1).
+**Objetivo:** [[O-1-cuanto-se-vendera|O1, cuánto se va a vender]]. **Criterio:** HU-33, criterio 1 ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1).
 
 > Los valores de esta página salen de datos FICTICIOS. Prueban el método de cálculo; no describen la demanda de MULTIPARTES.
 
@@ -44,7 +47,7 @@ actualizado: 2026-11-03
 2. **Qué es «el método elegido».** F03 no fija la regla de elección. F04 sí tiene una (columna `seleccion`), pero con otro requisito de historial (ver C-02).
 3. **Unidad.** F03 dice «repuestos por día» y F04 «unidades por día». La wiki entiende unidades vendidas de cada repuesto por día [INFERENCIA].
 4. **Ventas observadas frente a demanda.** Los días sin salidas cuentan como cero aunque haya habido faltante de stock ([F04](../../fuentes/F04_pronosticos_HU07/README.md), tercer párrafo). Un MAE bajo puede venir de stock agotado y no de un buen pronóstico.
-5. [CALCULADO] **MAE cero.** Con 7 de 10 repuestos sin ventas en evaluación, la referencia da MAE 0 en esos repuestos y la fórmula de mejora queda indefinida para ellos (división por cero).
+5. [CALCULADO] **MAE cero.** Con 7 de 10 repuestos sin ventas en evaluación ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columna `dias_con_ventas_evaluacion`), la referencia da MAE 0 en esos repuestos y la fórmula de mejora queda indefinida para ellos (división por cero).
 
 ## Contradicciones
 

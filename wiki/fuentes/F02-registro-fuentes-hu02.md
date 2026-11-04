@@ -1,10 +1,13 @@
 ---
 tipo: fuente
+subtipo: fuente
 fuentes: [F02, F06]
-fecha_datos: 2026-10-27
+fecha: 2026-10-27
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
-estado: borrador
+estado: observado
+revision: borrador
 actualizado: 2026-11-03
+tags: [fuente, ficticio, publico, mixto]
 ---
 
 # F02. Registro de fuentes y fechas (HU-02)
@@ -27,33 +30,33 @@ Fechas de corte y conteos tomados de [`registro_actualizaciones.csv`](../../fuen
 | Conjunto | Qué es | Clase | Responsable | Corte de datos | Registros | Lo usa |
 |---|---|---|---|---|---|---|
 | catalogo_repuestos | Catálogo de repuestos | FICTICIO | Sabrina | (sin columna de fecha) | 20 | |
-| movimientos_inventario | Movimientos de septiembre | FICTICIO | Sabrina | 2026-09-14 | 24 | [KPI-3](../indicadores/KPI-3-vigencia-datos.md) |
+| movimientos_inventario | Movimientos de septiembre | FICTICIO | Sabrina | 2026-09-14 | 24 | [[KPI-3-vigencia-datos|KPI-3]] |
 | reporte_depuracion | Movimientos depurados (HU-17) | FICTICIO | Sabrina | 2026-09-14 | 24 | entrada de F04 |
 | stock_inicial | Stock inicial por repuesto | FICTICIO | Sabrina | 2026-08-31 | 10 | |
 | conteos_fisicos | Conteos físicos | FICTICIO | Sabrina | 2026-09-30 | 13 | |
 | historial_ajustes | Ajustes de inventario (HU-18) | FICTICIO | Sabrina | 2026-10-02 10:05:00 | 6 | |
-| comparacion_pronosticos | Comparación de pronósticos (HU-07) | FICTICIO | Fiorella | 2026-09-14 | 30 | [KPI-1](../indicadores/KPI-1-mejora-mae-pronostico.md) |
-| historial_movimientos | Historial de doce meses con precios (HU-30) | FICTICIO | Samuel | 2026-09-14 | 1220 | [KPI-1](../indicadores/KPI-1-mejora-mae-pronostico.md), [KPI-3](../indicadores/KPI-3-vigencia-datos.md) |
+| comparacion_pronosticos | Comparación de pronósticos (HU-07) | FICTICIO | Fiorella | 2026-09-14 | 30 | [[KPI-1-mejora-mae-pronostico|KPI-1]] |
+| historial_movimientos | Historial de doce meses con precios (HU-30) | FICTICIO | Samuel | 2026-09-14 | 1220 | [[KPI-1-mejora-mae-pronostico|KPI-1]], [[KPI-3-vigencia-datos|KPI-3]] |
 | cotizaciones_proveedor | Cotizaciones de proveedores (HU-31) | FICTICIO | Samuel | 2026-09-26 | 30 | |
 | costos_complementarios | Seguro y otros costos (HU-31) | FICTICIO | Samuel | 2026-09 | 4 | |
-| costos_importacion | Costos de importación con respaldo (HU-31) | MIXTO | Samuel | 2026-10-09 | 15 | [KPI-2](../indicadores/KPI-2-costo-con-respaldo.md) |
+| costos_importacion | Costos de importación con respaldo (HU-31) | MIXTO | Samuel | 2026-10-09 | 15 | [[KPI-2-costo-con-respaldo|KPI-2]] |
 | ine_flete_mensual | Importaciones de repuestos por mes (INE) | PUBLICO | Samuel | 2026-08 | 2842 | insumo de F05 |
 | flete_referencias | Cotizaciones de referencia de flete | PUBLICO | Samuel | 2026-10-09 | 6 | insumo de F05 |
 | tc_series_diaria | Tipo de cambio diario (HU-32) | PUBLICO | Equipo (HU-32) | 2026-10-26 | 127 | |
-| ventas_simuladas | Ventas diarias por repuesto (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | ver ambigüedad de [KPI-3](../indicadores/KPI-3-vigencia-datos.md) |
+| ventas_simuladas | Ventas diarias por repuesto (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | ver ambigüedad de [[KPI-3-vigencia-datos|KPI-3]] |
 | compras_simuladas | Compras recibidas (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-23 | 3600 | |
 | inventario_simulado | Inventario diario (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | |
 
 ## Observaciones
 
 - [OBSERVADO] Las fechas de corte no coinciden entre conjuntos: van de 2026-08 (INE) a 2026-10-26 (tipo de cambio) ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). El manifiesto ya lo anota como limitación.
-- [OBSERVADO] Los conjuntos de la HU-34 (ventas, compras e inventario simulados) llegan al 23 y 24 de octubre, mientras que los movimientos de la HU-17 y la HU-30 llegan al 14 de septiembre ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). Esto afecta la definición de [KPI-3](../indicadores/KPI-3-vigencia-datos.md).
+- [OBSERVADO] Los conjuntos de la HU-34 (ventas, compras e inventario simulados) llegan al 23 y 24 de octubre, mientras que los movimientos de la HU-17 y la HU-30 llegan al 14 de septiembre ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). Esto afecta la definición de [[KPI-3-vigencia-datos|KPI-3]].
 - [OBSERVADO] El campo `fecha_corte_datos` de `historial_ajustes` trae hora (`2026-10-02 10:05:00`) y el de `costos_complementarios` sólo mes (`2026-09`): el formato no es uniforme ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`).
 
 ## Contradicciones
 
 - **C-03. Clase de los datos de la HU-32.** [OBSERVADO] F06 describe la HU-32 como «MIXTO: tipo de cambio oficial del BCB (público) y tipo de cambio pagado por la empresa (FICTICIO)» ([F06](../../fuentes/F06_portada_repositorio/README.md), tabla «Historias de usuario terminadas», fila HU-32). F02 registra el único conjunto de esa historia, `tc_series_diaria`, como PUBLICO ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `tc_series_diaria`, columna `tipo_dato`). **Prevalece F02 para la clase de `tc_series_diaria`** [INFERENCIA]: es el registro de origen y el manifiesto dice que F06 sólo resume. Queda **pendiente** saber si la parte FICTICIA de la HU-32 (tipo de cambio pagado) es un conjunto que el registro no incluye. Ningún indicador usa este conjunto.
-- **C-04. Clase de la tabla de costos de importación.** Resuelta en la revisión 01; ver [F05](F05-costos-importacion-hu31.md#contradicciones).
+- **C-04. Clase de la tabla de costos de importación.** Resuelta en la revisión 01; ver [[F05-costos-importacion-hu31#Contradicciones|F05]].
 
 ## Cómo recalcular
 

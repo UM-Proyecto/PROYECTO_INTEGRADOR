@@ -1,10 +1,13 @@
 ---
 tipo: fuente
+subtipo: fuente
 fuentes: [F04, F02, F06]
-fecha_datos: 2026-09-14
+fecha: 2026-09-14
 clase_datos: [FICTICIO]
-estado: borrador
+estado: observado
+revision: borrador
 actualizado: 2026-11-03
+tags: [fuente, ficticio]
 ---
 
 # F04. Comparación de pronósticos (HU-07)
@@ -43,7 +46,7 @@ Fuente de todas las filas: [F04](../../fuentes/F04_pronosticos_HU07/comparacion_
 
 ## Contradicciones
 
-- **C-02.** El historial que pide F04 para seleccionar (12 + 12 meses) no coincide con el que pide F03 para el criterio 1 (un año + 3 meses). Ver [KPI-1](../indicadores/KPI-1-mejora-mae-pronostico.md#contradicciones).
+- **C-02.** El historial que pide F04 para seleccionar (12 + 12 meses) no coincide con el que pide F03 para el criterio 1 (un año + 3 meses). Ver [[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]].
 
 ## Cómo recalcular
 

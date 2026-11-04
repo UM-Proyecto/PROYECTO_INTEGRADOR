@@ -1,10 +1,13 @@
 ---
 tipo: fuente
+subtipo: fuente
 fuentes: [F05, F02, F06]
-fecha_datos: 2026-10-09
+fecha: 2026-10-09
 clase_datos: [MIXTO, PUBLICO]
-estado: borrador
+estado: observado
+revision: borrador
 actualizado: 2026-11-03
+tags: [fuente, mixto, publico]
 ---
 
 # F05. Costos de importación (HU-31)

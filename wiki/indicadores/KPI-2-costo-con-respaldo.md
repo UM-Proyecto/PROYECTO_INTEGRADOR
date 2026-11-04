@@ -1,17 +1,20 @@
 ---
 tipo: indicador
+subtipo: indicador
 fuentes: [F03, F05, F02]
-fecha_datos: 2026-10-09
+fecha: 2026-10-09
 clase_datos: [MIXTO, PUBLICO]
-estado: borrador
+estado: esperado
+revision: borrador
 actualizado: 2026-11-03
+tags: [indicador, mixto, publico]
 ---
 
 # KPI-2. Porcentaje de componentes del costo de importación con respaldo
 
-**Objetivo:** [O2, cuánto cuesta traerlo](../sintesis/O-2-cuanto-cuesta-traerlo.md). **Criterio:** HU-33, criterio 2 ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 2).
+**Objetivo:** [[O-2-cuanto-cuesta-traerlo|O2, cuánto cuesta traerlo]]. **Criterio:** HU-33, criterio 2 ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 2).
 
-> La tabla de costos es MIXTO según F02; sus valores vienen de referencias PUBLICAS (agente de carga, SCFI, INE) y de filas sin dato; no trae datos FICTICIOS. Ver C-04, resuelta, en [F05](../fuentes/F05-costos-importacion-hu31.md#contradicciones).
+> La tabla de costos es MIXTO según F02; sus valores vienen de referencias PUBLICAS (agente de carga, SCFI, INE) y de filas sin dato; no trae datos FICTICIOS. Ver C-04, resuelta, en [[F05-costos-importacion-hu31#Contradicciones|F05]].
 
 ## Definición
 
@@ -30,7 +33,7 @@ actualizado: 2026-11-03
 
 - [CALCULADO] 6 DOCUMENTADO, 5 ESTIMACION y 4 PENDIENTE sobre 15 filas: 6 / 15 × 100 = **40 %** ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato`). Igual a la línea base: la tabla no cambió entre el 26-oct y el 3-nov (misma huella en [F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `sha256`, y en `fuentes/MANIFIESTO.csv`).
 - [CALCULADO] Para llegar al 80 % hacen falta 12 de 15 documentados (0,8 × 15 = 12, sobre las 15 filas de [F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv)), es decir **6 componentes más**.
-- [CALCULADO] **Estado frente a la meta: no cumple** (40 % frente a 80 %).
+- [CALCULADO] **Estado frente a la meta: no cumple** (40 % frente a 80 %; [F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv) y [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 2).
 
 ## Qué falta
 

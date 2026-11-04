@@ -1,10 +1,13 @@
 ---
 tipo: fuente
+subtipo: fuente
 fuentes: [F03, F04, F06]
-fecha_datos: 2026-10-26
+fecha: 2026-10-26
 clase_datos: [FICTICIO, MIXTO]
-estado: borrador
+estado: observado
+revision: borrador
 actualizado: 2026-11-03
+tags: [fuente, ficticio, mixto]
 ---
 
 # F03. Criterios de éxito (HU-33)
@@ -21,9 +24,9 @@ F03 es la **definición de los indicadores** de la wiki. Cuando el aprobado y el
 
 | # | Criterio | Meta [ESPERADO] | Línea base al 26-oct-2026 [OBSERVADO] | Página |
 |---|---|---|---|---|
-| 1 | Pronóstico de salidas mejor que «último periodo» (MAE) | ≥ 15 % menos de error, con un año de historial y 3 meses reservados | Sin método elegible: HU-07 sólo cubre del 1 al 14 de septiembre | [KPI-1](../indicadores/KPI-1-mejora-mae-pronostico.md) |
-| 2 | Costo de importación con respaldo | ≥ 80 % de componentes documentados | 6 de 15 documentados (40 %) | [KPI-2](../indicadores/KPI-2-costo-con-respaldo.md) |
-| 3 | Datos vigentes al decidir | ≤ 30 días | 42 días (movimientos al 14-sep, medido el 26-oct) | [KPI-3](../indicadores/KPI-3-vigencia-datos.md) |
+| 1 | Pronóstico de salidas mejor que «último periodo» (MAE) | ≥ 15 % menos de error, con un año de historial y 3 meses reservados | Sin método elegible: HU-07 sólo cubre del 1 al 14 de septiembre | [[KPI-1-mejora-mae-pronostico|KPI-1]] |
+| 2 | Costo de importación con respaldo | ≥ 80 % de componentes documentados | 6 de 15 documentados (40 %) | [[KPI-2-costo-con-respaldo|KPI-2]] |
+| 3 | Datos vigentes al decidir | ≤ 30 días | 42 días (movimientos al 14-sep, medido el 26-oct) | [[KPI-3-vigencia-datos|KPI-3]] |
 
 Fuente de la tabla: [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), tabla principal.
 
@@ -35,5 +38,5 @@ Fuente de la tabla: [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROB
 
 ## Contradicciones
 
-- **C-02. Historial necesario para el criterio 1.** [OBSERVADO] F03 pide «un año de historial y 3 meses reservados» ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1, columna Meta). La herramienta de la HU-07 exige, para seleccionar un método, «al menos 12 meses de entrenamiento, 12 meses reservados para evaluación» ([F04](../../fuentes/F04_pronosticos_HU07/README.md), quinto párrafo). Detalle y resolución en [KPI-1](../indicadores/KPI-1-mejora-mae-pronostico.md#contradicciones).
+- **C-02. Historial necesario para el criterio 1.** [OBSERVADO] F03 pide «un año de historial y 3 meses reservados» ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1, columna Meta). La herramienta de la HU-07 exige, para seleccionar un método, «al menos 12 meses de entrenamiento, 12 meses reservados para evaluación» ([F04](../../fuentes/F04_pronosticos_HU07/README.md), quinto párrafo). Detalle y resolución en [[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]].
 - [INFERENCIA] El criterio 3 se fecha el 26-oct, pero la carga del registro que cita como fuente (F02) es del 27-oct 18:00 UTC ([F02](../../fuentes/F02_registro_fuentes_HU02/historial_cargas.csv), columna `fecha_intento`). No cambia el valor porque la fecha de corte de los movimientos (14-sep) es la misma, pero la medición no se puede reproducir con el archivo de F02 tal como está. Se anota como ambigüedad, no como contradicción.

@@ -1,6 +1,6 @@
 # Prompt mejorado
 
-Versión que se usó en las corridas del agente. Cada corrida recibe este texto completo más una línea final que dice qué etapa ejecutar (`ETAPA: 1`, `ETAPA: 2`, etc.). Los cambios respecto del prompt inicial, y el motivo de cada uno, están en `cambios_prompt.md`.
+Versión que se usó en las corridas del agente. La versión 1 se usó en la corrida 01; la versión 2, desde la corrida 02, agrega las reglas de Obsidian (ver `cambios_prompt.md`). Cada corrida recibe este texto completo más una línea final que dice qué etapa ejecutar (`ETAPA: 1`, `ETAPA: 2`, etc.). Los cambios respecto del prompt inicial, y el motivo de cada uno, están en `cambios_prompt.md`.
 
 ---
 
@@ -32,7 +32,8 @@ Nombra los datos como los nombra el registro de la HU-02: FICTICIO (datos de pru
 
 - Antes de crear una página, busca en `wiki/` si ya existe una sobre el mismo tema y actualízala.
 - Estructura: `wiki/index.md` (catálogo de todas las páginas, con una línea cada una), `wiki/log.md` (registro cronológico, sólo se agregan entradas al final), `wiki/objetivos.md`, `wiki/fuentes/F0N-*.md` (una por fuente), `wiki/indicadores/KPI-N-*.md` (uno por criterio), `wiki/sintesis/O-N-*.md` (una por objetivo) y `wiki/consultas/` y `wiki/revisiones/` cuando la etapa lo pida.
-- Cada página empieza con un bloque de metadatos YAML con `tipo`, `fuentes` (códigos F0N), `fecha_datos`, `estado` (borrador, revisado o pendiente) y `actualizado`.
+- Cada página empieza con un bloque de metadatos YAML con `tipo` (fuente, indicador, hallazgo, decision, mapa o registro), `subtipo`, `fuentes` (códigos F0N), `fecha` (corte de los datos), `clase_datos`, `estado` (observado, inferido, supuesto o esperado), `revision` (borrador, revisado o pendiente; nunca escribas `revisado`, lo pone la revisión humana), `actualizado` y `tags` (el tipo más las clases de datos en minúscula). El detalle está en `AGENTS.md`.
+- La wiki es una bóveda de Obsidian que también se lee en GitHub. Los enlaces entre páginas son wikilinks por nombre de archivo (`[[KPI-2-costo-con-respaldo|KPI-2]]`, `[[F05-costos-importacion-hu31#Contradicciones|F05]]`, con el texto exacto del encabezado); las citas a `fuentes/` siguen siendo enlaces Markdown relativos. `index.md` es el mapa de contenidos y toda página se enlaza desde ahí y desde al menos otra página.
 - Cada afirmación relevante lleva una etiqueta y una cita. Etiquetas: [OBSERVADO] lo que dice un archivo; [CALCULADO] un número que tú obtuviste de un archivo, con el cálculo; [INFERENCIA] una conclusión tuya; [SUPUESTO] algo que se da por cierto sin evidencia; [ESPERADO] una meta o resultado esperado. La cita es un enlace relativo al archivo de `fuentes/` más la fila, columna o sección (por ejemplo `[F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna tipo_dato`).
 - Cada indicador define fórmula, unidad, granularidad, período, filtros, fuente, meta, línea base con su fecha de medición, y las ambigüedades que encuentres en la definición.
 - Contradicciones: cuando dos fuentes no coinciden, conserva las dos citas en una sección «Contradicciones» de la página afectada y en `index.md`, explica cuál prevalece y por qué, o márcala pendiente. No elijas una en silencio.
@@ -55,7 +56,7 @@ En cada etapa agrega una entrada a `wiki/log.md` con fecha, etapa, fuentes leíd
 La revisión humana rechaza el cambio, o lo corrige antes de aceptarlo, si no se cumple alguno:
 
 - Ningún archivo fuera de `wiki/` y `AGENTS.md` cambió (se comprueba con `git status` y con `python3 src/u4-t1/manifiesto.py`).
-- Todos los enlaces internos de la wiki apuntan a archivos que existen y toda página está enlazada desde `index.md`.
+- `python3 src/u4-t1/salud.py` sale con 0 hallazgos: 0 enlaces y wikilinks rotos, 0 páginas huérfanas o fuera de `index.md`, metadatos completos y cifras con etiqueta y cita.
 - Cada número de la wiki coincide con su fuente o con un cálculo reproducible.
 - Cada indicador tiene fórmula, unidad, granularidad, período, filtros, meta y línea base fechada.
 - Lo FICTICIO, lo PUBLICO y lo MIXTO están marcados en cada página que usa esos datos.

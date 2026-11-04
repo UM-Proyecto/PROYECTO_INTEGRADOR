@@ -47,24 +47,40 @@ Nombres de archivo en minúsculas, con guiones, sin tildes ni espacios, salvo el
 
 ## Formato de cada página
 
-Bloque de metadatos YAML al principio:
+Bloque de metadatos YAML al principio (lo lee Obsidian como propiedades y GitHub lo muestra como tabla):
 
 ```yaml
 ---
-tipo: fuente | indicador | sintesis | consulta | revision | indice | log | mapa
+tipo: fuente | indicador | hallazgo | decision | mapa | registro
+subtipo: fuente | indicador | sintesis | consulta | revision | mapa | indice | log
 fuentes: [F02, F03]
-fecha_datos: 2026-09-14        # corte de los datos que usa la página
+fecha: 2026-09-14              # corte de los datos que usa la página
 clase_datos: [FICTICIO, MIXTO] # si usa datos
-estado: borrador | revisado | pendiente
+estado: observado | inferido | supuesto | esperado   # naturaleza dominante del contenido
+revision: borrador | revisado | pendiente
 actualizado: 2026-11-03
+tags: [indicador, ficticio]    # siempre el tipo, más las clases de datos en minúscula
 ---
 ```
 
-Las conclusiones que afectan una decisión de compra quedan en `estado: borrador` hasta que una persona del equipo las revise.
+- `tipo` es la familia que colorea el gráfico de Obsidian: `fuente` (páginas de `wiki/fuentes/`), `indicador` (`wiki/indicadores/`), `hallazgo` (síntesis, consultas y revisiones), `decision` (`objetivos.md`, el mapa objetivo → decisión), `mapa` (`index.md`) y `registro` (`log.md`). `subtipo` conserva el detalle.
+- `estado` dice qué clase de contenido domina la página: `observado` para una fuente, `esperado` para un indicador o un objetivo (definición y meta), `inferido` para una síntesis o una consulta, `supuesto` si la página descansa en algo sin evidencia. Las etiquetas de cada afirmación siguen siendo obligatorias aunque la página tenga un `estado`.
+- `revision` es el estado de la revisión humana. El agente nunca escribe `revisado`: lo pone la persona que revisa, al aceptar el cambio. Las conclusiones que afectan una decisión de compra quedan en `revision: borrador` hasta entonces.
+
+## Compatibilidad con Obsidian
+
+La carpeta raíz del repositorio es una bóveda de Obsidian (configuración mínima versionada en `.obsidian/`: `app.json` y `graph.json`). La wiki tiene que verse bien en Obsidian, con su gráfico, y seguir legible en GitHub.
+
+- Los enlaces entre páginas de la wiki son wikilinks por nombre de archivo, sin ruta ni extensión: `[[KPI-2-costo-con-respaldo]]`, o `[[KPI-2-costo-con-respaldo|KPI-2]]` cuando el texto visible tiene que ser otro. Para un encabezado: `[[F05-costos-importacion-hu31#Contradicciones|F05]]`, con el texto exacto del encabezado. `[[AGENTS]]` enlaza a este archivo.
+- Las citas a `fuentes/` no son wikilinks: siguen siendo enlaces Markdown relativos, como se explica en la sección siguiente. Obsidian los resuelve y GitHub los muestra como enlaces que se pueden abrir.
+- Los nombres de archivo de la wiki son únicos en todo el repositorio, porque un wikilink se resuelve por nombre.
+- `index.md` es el mapa de contenidos (MOC): toda página está enlazada desde ahí, y además desde al menos otra página relacionada, para que nada quede aislado en el gráfico.
+- No se versionan `workspace.json`, plugins, temas ni ningún otro archivo personal de `.obsidian/`.
+- `python3 src/u4-t1/obsidian.py` convierte una página escrita con enlaces Markdown internos al formato de arriba; `python3 src/u4-t1/salud.py` tiene que dar 0 wikilinks rotos y 0 páginas huérfanas.
 
 ## Etiquetas y citas
 
-Cada afirmación relevante lleva una etiqueta y una cita.
+Cada afirmación relevante lleva una etiqueta y una cita (o un wikilink a la página que la cita).
 
 | Etiqueta | Cuándo |
 |---|---|
@@ -109,6 +125,6 @@ Cada etapa agrega una entrada al final de `wiki/log.md` con fecha, etapa, fuente
 
 1. `git status --short` muestra cambios sólo en `wiki/` y `AGENTS.md`.
 2. `python3 src/u4-t1/manifiesto.py` no reporta cambios en las fuentes.
-3. Todos los enlaces relativos de la wiki apuntan a archivos que existen y toda página está en `index.md`.
+3. `python3 src/u4-t1/salud.py` sale con 0 hallazgos: enlaces y wikilinks resuelven, ninguna página huérfana ni fuera de `index.md`, metadatos completos, cifras con etiqueta y cita.
 4. Cada número tiene su cita o su comando.
 5. `log.md` tiene la entrada de la etapa.

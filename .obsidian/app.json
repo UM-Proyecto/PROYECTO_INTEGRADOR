@@ -1,0 +1,12 @@
+{
+  "useMarkdownLinks": false,
+  "newLinkFormat": "shortest",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "showFrontmatter": true,
+  "userIgnoreFilters": [
+    "src/",
+    "tests/",
+    "docs/u4-t1/evidencia/"
+  ]
+}
