@@ -44,7 +44,7 @@ actualizado: 2026-11-03
 2. **Qué es «el método elegido».** F03 no fija la regla de elección. F04 sí tiene una (columna `seleccion`), pero con otro requisito de historial (ver C-02).
 3. **Unidad.** F03 dice «repuestos por día» y F04 «unidades por día». La wiki entiende unidades vendidas de cada repuesto por día [INFERENCIA].
 4. **Ventas observadas frente a demanda.** Los días sin salidas cuentan como cero aunque haya habido faltante de stock ([F04](../../fuentes/F04_pronosticos_HU07/README.md), tercer párrafo). Un MAE bajo puede venir de stock agotado y no de un buen pronóstico.
-5. **MAE cero.** Con 7 de 10 repuestos sin ventas en evaluación, la referencia da MAE 0 en esos repuestos y la fórmula de mejora queda indefinida para ellos (división por cero).
+5. [CALCULADO] **MAE cero.** Con 7 de 10 repuestos sin ventas en evaluación, la referencia da MAE 0 en esos repuestos y la fórmula de mejora queda indefinida para ellos (división por cero).
 
 ## Contradicciones
 

@@ -31,4 +31,4 @@ actualizado: 2026-11-03
 2. Una carga de movimientos con corte posterior al 2026-10-04, para cumplir la meta al 3-nov-2026 [CALCULADO en KPI-3].
 3. Una fecha de decisión de compra registrada; hoy se usa la fecha de la consulta como [SUPUESTO].
 
-**Estado del objetivo:** no cumple al 3-nov-2026 con la definición de F03 (50 días frente a 30).
+**Estado del objetivo:** [CALCULADO] no cumple al 3-nov-2026 con la definición de F03 (50 días frente a 30).

@@ -28,8 +28,8 @@ actualizado: 2026-11-03
 ## Qué falta
 
 1. Facturas o cotizaciones de MULTIPARTES para los 4 componentes PENDIENTE ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `nota`).
-2. Al menos 2 documentos más para pasar de 10 a 12 de 15 (ver cálculo en [KPI-2](../indicadores/KPI-2-costo-con-respaldo.md#qué-falta)).
-3. Que el equipo aclare qué cuenta como «componente» y resuelva C-04.
+2. [CALCULADO] Al menos 2 documentos más para pasar de 10 a 12 de 15 (ver cálculo en [KPI-2](../indicadores/KPI-2-costo-con-respaldo.md#qué-falta)).
+3. Que el equipo aclare qué cuenta como «componente» (C-04 quedó resuelta en la revisión 01).
 4. El archivo del INE con su URL de descarga, para poder recalcular las 5 estimaciones (manifiesto, fila F05).
 
-**Estado del objetivo:** no cumple al 3-nov-2026 (40 % frente a 80 %).
+**Estado del objetivo:** [CALCULADO] no cumple al 3-nov-2026 (40 % frente a 80 %).

@@ -3,7 +3,7 @@ tipo: fuente
 fuentes: [F05, F02, F06]
 fecha_datos: 2026-10-09
 clase_datos: [MIXTO, PUBLICO]
-estado: revisado
+estado: borrador
 actualizado: 2026-11-03
 ---
 
@@ -27,13 +27,13 @@ actualizado: 2026-11-03
 
 ## Límites
 
-- [OBSERVADO] Las cotizaciones son indicativas y públicas, no la tarifa que pagaría MULTIPARTES; la URL de descarga del INE no está en el repositorio (manifiesto, fila F05).
+- [OBSERVADO] Las cotizaciones son indicativas y públicas, no la tarifa que pagaría MULTIPARTES; la URL de descarga del INE no está en el repositorio ([manifiesto](../../fuentes/MANIFIESTO.md), fila F05).
 - [INFERENCIA] Las cotizaciones del agente de carga tienen fecha 2026-06: al 3-nov-2026 tienen unos cinco meses. La nota dice que la página se modificó el 2026-06-02.
 - [OBSERVADO] Las rutas South America (Santos) y WCSA (Manzanillo) del SCFI «vienen en null sin registro» ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), fila `indice compuesto SCFI`, columna `nota`). El índice que se usa es el compuesto mundial, no una ruta a Sudamérica.
 
 ## Contradicciones
 
-- **C-04. Qué tiene de FICTICIO la tabla de costos.** [OBSERVADO] F02 registra `costos_importacion` como MIXTO ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `costos_importacion`). F06 explica el MIXTO así: «fletes públicos (INE, agente de carga, SCFI) y cotizaciones de proveedor FICTICIAS» ([F06](../../fuentes/F06_portada_repositorio/README.md), tabla de historias, fila HU-31). Pero ninguna de las 15 filas de la tabla copiada trae una cotización de proveedor: 11 tienen respaldo público (URL o INE) y 4 están vacías ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `respaldo`) [CALCULADO]. Las cotizaciones FICTICIAS están en otro conjunto, `cotizaciones_proveedor` ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `cotizaciones_proveedor`). **Resolución:** la wiki sigue llamando MIXTO a la tabla, porque la clase de un conjunto la fija F02; anota que los valores copiados vienen de fuentes públicas y que la parte FICTICIA no está en esta tabla. **Pendiente** que el responsable de la HU-31 confirme si la clase debe ser PUBLICO o si falta una parte de la tabla.
+- **C-04. Qué tiene de FICTICIO la tabla de costos (resuelta en la revisión 01).** [OBSERVADO] F02 registra `costos_importacion` como MIXTO y describe su origen como «Referencias públicas de flete y estimaciones de HU-31» ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `costos_importacion`, columna `fuente`). F06 dice «MIXTO: fletes públicos (INE, agente de carga, SCFI) y cotizaciones de proveedor FICTICIAS» ([F06](../../fuentes/F06_portada_repositorio/README.md), tabla de historias, fila HU-31), pero esa fila describe la **historia** HU-31 entera, que tiene dos conjuntos: esta tabla y `cotizaciones_proveedor`, que F02 registra como FICTICIO ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `cotizaciones_proveedor`). [INFERENCIA] No es una contradicción entre fuentes. La tabla no trae datos FICTICIOS: es MIXTO porque combina valores publicados (6 DOCUMENTADO) con estimaciones calculadas sobre datos públicos del INE (5 ESTIMACION), y las 4 filas PENDIENTE no tienen valor. La primera versión de esta página, escrita por el agente, la dejó como contradicción pendiente porque leyó la fila de F06 como si describiera sólo la tabla; la revisión 01 la corrigió.
 
 ## Cómo recalcular
 

@@ -3,7 +3,7 @@ tipo: fuente
 fuentes: [F01]
 fecha_datos: 2026-10-14
 clase_datos: []
-estado: revisado
+estado: borrador
 actualizado: 2026-11-03
 ---
 

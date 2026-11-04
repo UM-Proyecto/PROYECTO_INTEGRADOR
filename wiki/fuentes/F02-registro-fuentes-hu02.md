@@ -3,7 +3,7 @@ tipo: fuente
 fuentes: [F02, F06]
 fecha_datos: 2026-10-27
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
-estado: revisado
+estado: borrador
 actualizado: 2026-11-03
 ---
 
@@ -16,7 +16,7 @@ F02 hace de **diccionario de datos** de la wiki: dice qué es cada conjunto, de 
 ## Qué dice
 
 - [OBSERVADO] El registro tiene 17 conjuntos ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), un renglón por conjunto).
-- [CALCULADO] Por clase (columna `tipo_dato`): 13 FICTICIO, 3 PUBLICO y 1 MIXTO. Coincide con lo que dice el manifiesto. Comando abajo.
+- [CALCULADO] Por clase (columna `tipo_dato`): 13 FICTICIO, 3 PUBLICO y 1 MIXTO ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `tipo_dato`). Coincide con lo que dice el manifiesto. Comando abajo.
 - [CALCULADO] Los 17 conjuntos tienen `estado_ultima_carga` = OK, y `historial_cargas.csv` tiene un solo intento por conjunto, todos del 27-oct-2026 18:00 UTC ([F02](../../fuentes/F02_registro_fuentes_HU02/historial_cargas.csv), columnas `fecha_intento` y `resultado`).
 - [OBSERVADO] Una carga cuenta como fallida si falta el archivo, no se lee como texto, le falta una columna obligatoria, no tiene registros o trae una fecha mal escrita; una fecha vacía no es fallo, y un rango como `2025-09 a 2026-08` cuenta por su fecha final ([F02](../../fuentes/F02_registro_fuentes_HU02/LEEME.md), sección «Cuándo una carga se toma como fallida»).
 
@@ -47,13 +47,13 @@ Fechas de corte y conteos tomados de [`registro_actualizaciones.csv`](../../fuen
 ## Observaciones
 
 - [OBSERVADO] Las fechas de corte no coinciden entre conjuntos: van de 2026-08 (INE) a 2026-10-26 (tipo de cambio) ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). El manifiesto ya lo anota como limitación.
-- [OBSERVADO] Los conjuntos de la HU-34 (ventas, compras e inventario simulados) llegan al 23 y 24 de octubre, mientras que los movimientos de la HU-17 y la HU-30 llegan al 14 de septiembre. Esto afecta la definición de [KPI-3](../indicadores/KPI-3-vigencia-datos.md).
-- [OBSERVADO] El campo `fecha_corte_datos` de `historial_ajustes` trae hora (`2026-10-02 10:05:00`) y el de `costos_complementarios` sólo mes (`2026-09`): el formato no es uniforme.
+- [OBSERVADO] Los conjuntos de la HU-34 (ventas, compras e inventario simulados) llegan al 23 y 24 de octubre, mientras que los movimientos de la HU-17 y la HU-30 llegan al 14 de septiembre ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). Esto afecta la definición de [KPI-3](../indicadores/KPI-3-vigencia-datos.md).
+- [OBSERVADO] El campo `fecha_corte_datos` de `historial_ajustes` trae hora (`2026-10-02 10:05:00`) y el de `costos_complementarios` sólo mes (`2026-09`): el formato no es uniforme ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`).
 
 ## Contradicciones
 
 - **C-03. Clase de los datos de la HU-32.** [OBSERVADO] F06 describe la HU-32 como «MIXTO: tipo de cambio oficial del BCB (público) y tipo de cambio pagado por la empresa (FICTICIO)» ([F06](../../fuentes/F06_portada_repositorio/README.md), tabla «Historias de usuario terminadas», fila HU-32). F02 registra el único conjunto de esa historia, `tc_series_diaria`, como PUBLICO ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `tc_series_diaria`, columna `tipo_dato`). **Prevalece F02 para la clase de `tc_series_diaria`** [INFERENCIA]: es el registro de origen y el manifiesto dice que F06 sólo resume. Queda **pendiente** saber si la parte FICTICIA de la HU-32 (tipo de cambio pagado) es un conjunto que el registro no incluye. Ningún indicador usa este conjunto.
-- **C-04. Clase de la tabla de costos de importación.** Ver [F05](F05-costos-importacion-hu31.md#contradicciones).
+- **C-04. Clase de la tabla de costos de importación.** Resuelta en la revisión 01; ver [F05](F05-costos-importacion-hu31.md#contradicciones).
 
 ## Cómo recalcular
 

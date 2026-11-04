@@ -28,8 +28,8 @@ actualizado: 2026-11-03
 ## Qué falta
 
 1. Historial de al menos un año con 3 meses reservados ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1).
-2. El resultado de la HU-36 con 284 días, que no está en `fuentes/` ([F06](../../fuentes/F06_portada_repositorio/README.md), fila HU-36).
+2. [OBSERVADO] El resultado de la HU-36 con 284 días, que no está en `fuentes/` ([F06](../../fuentes/F06_portada_repositorio/README.md), fila HU-36).
 3. Una decisión del equipo sobre C-02 (un año + 3 meses en F03 frente a 12 + 12 meses en F04). Ver [KPI-1](../indicadores/KPI-1-mejora-mae-pronostico.md#contradicciones).
 4. Datos de faltantes de stock, para no confundir ventas observadas con demanda ([F04](../../fuentes/F04_pronosticos_HU07/README.md), tercer párrafo).
 
-**Estado del objetivo:** no medible al 3-nov-2026.
+**Estado del objetivo:** [INFERENCIA] no medible al 3-nov-2026.
