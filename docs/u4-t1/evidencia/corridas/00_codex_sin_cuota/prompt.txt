@@ -64,3 +64,5 @@ La revisión humana rechaza el cambio, o lo corrige antes de aceptarlo, si no se
 ## Entrega
 
 Al terminar, responde con: (1) los archivos creados o modificados, (2) en la etapa 2, la respuesta a la pregunta, (3) los errores, contradicciones o incertidumbres que encontraste, y (4) tres pasos siguientes priorizados, cada uno con responsable, insumo, producto y criterio de finalización. Las conclusiones que afecten una decisión de compra quedan con `estado: borrador` hasta la revisión humana.
+
+ETAPA: 1 

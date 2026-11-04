@@ -1,13 +1,13 @@
 """Genera o comprueba fuentes/MANIFIESTO.csv (sha256 y tamaño de cada copia en fuentes/).
 
 Uso:
-  python3 verificacion/manifiesto.py --generar   # sólo al incorporar una fuente nueva
-  python3 verificacion/manifiesto.py             # comprueba que ninguna copia cambió
+  python3 src/u4-t1/manifiesto.py --generar   # sólo al incorporar una fuente nueva
+  python3 src/u4-t1/manifiesto.py             # comprueba que ninguna copia cambió
 Sale con código 1 si una copia no coincide, falta o sobra.
 """
 import csv, hashlib, pathlib, sys
 
-RAIZ = pathlib.Path(__file__).resolve().parent.parent
+RAIZ = pathlib.Path(__file__).resolve().parents[2]
 FUENTES = RAIZ / "fuentes"
 MANIFIESTO = FUENTES / "MANIFIESTO.csv"
 REPO = "UM-Proyecto/MINERIA_DATOS"

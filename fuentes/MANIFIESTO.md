@@ -1,6 +1,6 @@
 # Manifiesto de fuentes
 
-Esta carpeta guarda copias exactas de los archivos del repositorio del equipo `UM-Proyecto/MINERIA_DATOS`, tomadas del commit `c27757a` (3 de noviembre de 2026, 13:48, rama `main`) el 3 de noviembre de 2026. Los originales siguen en el repositorio y no se modificaron. Las huellas SHA-256 y los tamaños están en `MANIFIESTO.csv`; `python3 verificacion/manifiesto.py` comprueba que ninguna copia cambió desde que se incorporó.
+Esta carpeta guarda copias exactas de los archivos del repositorio del equipo `UM-Proyecto/MINERIA_DATOS`, tomadas del commit `c27757a` (3 de noviembre de 2026, 13:48, rama `main`) el 3 de noviembre de 2026. Los originales siguen en el repositorio y no se modificaron. Las huellas SHA-256 y los tamaños están en `MANIFIESTO.csv`; `python3 src/u4-t1/manifiesto.py` comprueba que ninguna copia cambió desde que se incorporó.
 
 Nada de lo que hay en `fuentes/` se edita. Si una fuente cambia en el repositorio, se copia la versión nueva en una carpeta nueva (por ejemplo `F05b_...`), se agrega al manifiesto y se registra en `wiki/log.md`.
 

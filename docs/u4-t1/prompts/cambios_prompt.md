@@ -14,4 +14,4 @@ El prompt inicial pedía separar hechos, cálculos, inferencias y supuestos, per
 
 El genérico pedía hacer todo de una vez. El mejorado separa cuatro etapas y le pide al agente que se detenga al terminar cada una, para que la revisión humana lea y acepte un cambio por vez y el historial de git muestre qué propuso la IA y qué se corrigió. Por la misma razón el agente no hace commits.
 
-Por último, se agregaron criterios de aceptación que se pueden comprobar con un comando (archivos tocados, enlaces, números, campos de cada indicador, marcas de origen y entrada en el registro). Son los que se usan en `evidencia/revisiones/` para aceptar o corregir cada corrida.
+Por último, se agregaron criterios de aceptación que se pueden comprobar con un comando (archivos tocados, enlaces, números, campos de cada indicador, marcas de origen y entrada en el registro). Son los que se usan en `docs/u4-t1/evidencia/revisiones/` para aceptar o corregir cada corrida.
