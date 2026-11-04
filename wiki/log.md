@@ -59,3 +59,21 @@ Registro cronológico. Sólo se agregan entradas al final; las anteriores no se 
 **Hecho:** `src/u4-t1/obsidian.py` convirtió las 15 páginas. Los enlaces entre páginas pasaron a wikilinks, las citas a `fuentes/` quedaron como enlaces Markdown relativos, y los metadatos pasaron al esquema nuevo (`tipo` por familia, `subtipo`, `fecha`, `estado` como naturaleza del contenido, `revision`, `tags`). Una segunda corrida del conversor no cambia nada. Se versionó `.obsidian/` con `app.json` y `graph.json` (colores por tag: fuente, indicador, hallazgo, decision, moc, registro). Las reglas nuevas están en [[AGENTS]] y en la versión 2 del prompt mejorado.
 
 **Control:** `python3 src/u4-t1/salud.py` da 0 en todos los controles, con 0 wikilinks rotos y 0 páginas huérfanas. Su prueba (`tests/test_salud.py`) arma una wiki con una falla de cada tipo y comprueba que las detecta.
+
+## 2026-11-03. Etapa 2: consulta
+
+**Fuentes leídas:** `fuentes/MANIFIESTO.md`, F02 (`registro_actualizaciones.csv`), F03 (`CRITERIOS_APROBADOS.md`), F04 (`comparacion_pronosticos.csv`), F05 (`hu31_costos_importacion.csv`) y F06 (`README.md`), además de [[index]], [[objetivos]], los tres indicadores y las tres síntesis.
+
+**Pregunta:** qué criterios de la HU-33 respaldan hoy una decisión de compra, con qué valor frente a su meta y qué falta.
+
+**Respuesta:** ninguno. KPI-1 no es medible (30 de 30 combinaciones sin selección, datos FICTICIOS); KPI-2 da 40 % frente a 80 % (MIXTO, valores PUBLICOS); KPI-3 da 50 días frente a 30 (FICTICIO). Detalle en [[Q-01-criterios-hu33-al-3-nov|Q-01]]. Las cifras se recalcularon desde `fuentes/` y coinciden con las de las páginas de indicador.
+
+**Creadas:** `wiki/consultas/Q-01-criterios-hu33-al-3-nov.md`.
+
+**Modificadas:** `wiki/index.md` (sección Consultas), `wiki/objetivos.md` (enlace a la consulta en «Lectura conjunta»), `wiki/log.md`.
+
+**Pendientes:**
+
+- C-02 sigue pendiente; el conjunto de movimientos de KPI-3 y la regla de agregación de KPI-1 siguen sin fijar.
+- La HU-36 (284 días) no está en `fuentes/`, y aunque llegara no alcanza el año más 3 meses de F03.
+- Q-01 queda en `revision: borrador` hasta la revisión humana.

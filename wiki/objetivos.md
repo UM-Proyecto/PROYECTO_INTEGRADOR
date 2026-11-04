@@ -35,3 +35,4 @@ Las metas salen de [F03](../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS
 - [INFERENCIA] Al 3-nov-2026 ninguno de los tres criterios alcanza su meta. Uno no se puede medir (O1) y dos se miden y no cumplen (O2 y O3).
 - [INFERENCIA] Lo que tienen en común es el insumo que falta: datos propios de MULTIPARTES. O1 necesita historial real de salidas, O2 facturas de importación de la empresa y O3 movimientos con corte reciente.
 - [INFERENCIA] Ninguno de los valores calculados sobre datos FICTICIOS describe a la empresa. Sirven para mostrar que los indicadores se pueden calcular y qué les falta.
+- [INFERENCIA] La respuesta a la pregunta de negocio, con lo que la evidencia sostiene y lo que no, está en [[Q-01-criterios-hu33-al-3-nov|la consulta Q-01]].

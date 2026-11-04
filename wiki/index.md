@@ -46,7 +46,7 @@ Clases de datos (nombres del registro de la HU-02): FICTICIO (datos de prueba de
 
 ### Consultas
 
-Todavía no hay (etapa 2).
+- [[Q-01-criterios-hu33-al-3-nov|Q-01. Qué criterios de la HU-33 respaldan hoy una decisión de compra]]: respuesta a la pregunta de negocio al 3-nov-2026; ninguno de los tres criterios la respalda todavía. FICTICIO, PUBLICO y MIXTO.
 
 ### Revisiones
 

@@ -1,0 +1,7 @@
+exit=0
+2026-11-03T21:22:23-04:00
+ M wiki/index.md
+ M wiki/log.md
+ M wiki/objetivos.md
+?? docs/u4-t1/evidencia/corridas/02/
+?? wiki/consultas/
