@@ -30,9 +30,14 @@ tags: [hallazgo, ficticio]
 
 ## Qué falta
 
-1. Historial de al menos un año con 3 meses reservados ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1).
+1. [OBSERVADO] Historial de al menos un año con 3 meses reservados ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1).
 2. [OBSERVADO] El resultado de la HU-36 con 284 días, que no está en `fuentes/` ([F06](../../fuentes/F06_portada_repositorio/README.md), fila HU-36).
-3. Una decisión del equipo sobre C-02 (un año + 3 meses en F03 frente a 12 + 12 meses en F04). Ver [[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]].
-4. Datos de faltantes de stock, para no confundir ventas observadas con demanda ([F04](../../fuentes/F04_pronosticos_HU07/README.md), tercer párrafo).
+3. [OBSERVADO] Una decisión del equipo sobre C-02 (un año + 3 meses en F03 frente a 12 + 12 meses en F04). Ver [[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]].
+4. [INFERENCIA] Datos de faltantes de stock, para no confundir ventas observadas con demanda ([F04](../../fuentes/F04_pronosticos_HU07/README.md), tercer párrafo).
+5. [INFERENCIA] Repuestos con ventas suficientes en entrenamiento. F04 pide tres días con ventas y ninguno de los 10 repuestos FICTICIOS los tiene: cada uno tiene uno o ninguno ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columna `dias_con_ventas_entrenamiento`; detalle en [[KPI-1-mejora-mae-pronostico#Valor al 3-nov-2026|KPI-1]]). Un historial más largo no alcanza si los repuestos casi no se venden.
 
 **Estado del objetivo:** [INFERENCIA] no medible al 3-nov-2026.
+
+## Cambios
+
+- 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]] (H-05 y H-08): se agregó el ítem 5 y se etiquetaron los ítems 1, 3 y 4. La conclusión no cambia.

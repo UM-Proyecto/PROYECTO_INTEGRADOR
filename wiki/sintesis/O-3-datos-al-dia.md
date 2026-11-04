@@ -1,7 +1,7 @@
 ---
 tipo: hallazgo
 subtipo: sintesis
-fuentes: [F03, F02]
+fuentes: [F03, F02, F05]
 fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: inferido
@@ -30,8 +30,14 @@ tags: [hallazgo, ficticio, publico, mixto]
 
 ## Qué falta
 
-1. Que el equipo nombre el conjunto exacto que cuenta como «datos de movimientos».
-2. Una carga de movimientos con corte posterior al 2026-10-04, para cumplir la meta al 3-nov-2026 [CALCULADO en KPI-3].
+1. [INFERENCIA] Que el equipo nombre el conjunto exacto que cuenta como «datos de movimientos» (ambigüedad 1 de [[KPI-3-vigencia-datos#Ambigüedades|KPI-3]]).
+2. [CALCULADO] Una carga de movimientos con corte el 2026-10-04 o después, para cumplir la meta al 3-nov-2026: 2026-11-03 − 2026-10-04 = 30 días ([[KPI-3-vigencia-datos|KPI-3]]).
 3. Una fecha de decisión de compra registrada; hoy se usa la fecha de la consulta como [SUPUESTO].
 
+[CALCULADO] El indicador mira sólo los movimientos, pero el corte de un conjunto puede esconder filas más viejas: `flete_referencias` figura al 2026-10-09 por el índice SCFI, y las 5 cotizaciones del agente de carga que respaldan KPI-2 son de 2026-06, 154 días al 3-nov-2026 ([F05](../../fuentes/F05_costos_importacion_HU31/flete_referencias_puntuales.csv), columna `fecha_dato`). La antigüedad de cada conjunto está en [[R-01-salud-3-nov#H-09. Antigüedad de cada corte al 3-nov-2026|R-01]].
+
 **Estado del objetivo:** [CALCULADO] no cumple al 3-nov-2026 con la definición de F03 (50 días frente a 30; ver [[KPI-3-vigencia-datos|KPI-3]]).
+
+## Cambios
+
+- 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]] (H-01): decía «corte posterior al 2026-10-04». Un corte el mismo 2026-10-04 ya cumple la meta, como dice KPI-3. Se agregó también la nota sobre la antigüedad de las cotizaciones (H-09).

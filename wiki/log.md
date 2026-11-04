@@ -85,3 +85,26 @@ Registro cronológico. Sólo se agregan entradas al final; las anteriores no se 
 **Respuesta:** ninguno de los tres criterios de la HU-33 respalda hoy una decisión de compra. KPI-1 no es medible, KPI-2 está en 40 % frente a 80 % y KPI-3 en 50 días frente a 30.
 
 **Revisión humana (notas en `docs/u4-t1/evidencia/revisiones/02.md`):** se verificaron tres afirmaciones de la respuesta contra `fuentes/` con `src/u4-t1/verificar.py` (Q1 a Q3). Las cifras coinciden. La lectura de KPI-1 estaba incompleta: el −128,6 % de «mismo día de la semana» no muestra que ese método sea peor, porque en los 3 repuestos con ventas los tres métodos empatan en 0,467 y toda la diferencia sale de dos repuestos sin ventas. Se corrigió en Q-01, [[KPI-1-mejora-mae-pronostico|KPI-1]], [[F04-pronosticos-hu07|F04]] y [[O-1-cuanto-se-vendera|O-1]]. También se precisó que las 5 estimaciones de KPI-2 son cálculos sobre datos públicos, no valores publicados. Q-01 queda como revisada.
+
+## 2026-11-03. Etapa 3: revisión de salud
+
+**Agente:** Claude Code (Claude Opus 5.5), prompt mejorado versión 2.
+
+**Fuentes leídas:** `fuentes/MANIFIESTO.md` y `MANIFIESTO.csv`, F01 (texto del docx), F02 (los cuatro archivos), F03 (aprobados y borrador), F04 (CSV y README), F05 (los cuatro archivos) y F06. También las 16 páginas de la wiki y [[AGENTS]].
+
+**Controles:** `salud.py` dio 0 hallazgos antes y después de los cambios; `manifiesto.py`, 14 de 14 copias intactas. Todas las cifras de la wiki se recalcularon desde `fuentes/` y coinciden.
+
+**Hallazgos:** 13, en [[R-01-salud-3-nov|R-01]]. Diez quedaron corregidos: un día de diferencia en el corte que pide O-3, la HU-31 con tres conjuntos y no dos, `costos_complementarios` sin mencionar, la regla de tres días con ventas en entrenamiento que ningún repuesto cumple, la redacción de F06 frente a F03, dos etiquetas equivocadas, once afirmaciones sin etiqueta, la antigüedad de las cotizaciones, el prefijo de citas en AGENTS.md y la sección de revisiones del índice. Tres quedan pendientes.
+
+**Creadas:** `wiki/revisiones/R-01-salud-3-nov.md`.
+
+**Modificadas:** `AGENTS.md` (prefijo de citas, sección «Revisión de salud»), `wiki/index.md` (C-04, C-05, ambigüedades, revisiones), `wiki/objetivos.md`, `wiki/fuentes/F04-pronosticos-hu07.md`, `F05-costos-importacion-hu31.md`, `F06-portada-repositorio.md`, `wiki/indicadores/KPI-1-mejora-mae-pronostico.md`, `KPI-2-costo-con-respaldo.md`, `KPI-3-vigencia-datos.md`, `wiki/sintesis/O-1-cuanto-se-vendera.md`, `O-2-cuanto-cuesta-traerlo.md`, `O-3-datos-al-dia.md`, `wiki/log.md`. Cada página modificada tiene una sección «Cambios». No cambió ningún valor de indicador ni ningún estado frente a la meta.
+
+**Contradicción nueva:** C-05, la tabla de costos es MIXTO en F02 pero no trae datos de prueba, que es lo que define MIXTO en el manifiesto y en F06. Pendiente del equipo.
+
+**Pendientes:**
+
+- C-05, C-02 y C-03; la regla de agregación de KPI-1 y el conjunto de movimientos de KPI-3.
+- [[Q-01-criterios-hu33-al-3-nov|Q-01]] está revisada y el agente no la edita: su aviso inicial todavía dice que queda en borrador y, si se acepta C-05, cambia la clase de KPI-2 en su tabla.
+- Convención del campo `fecha` en páginas con varios cortes: propuesta en R-01, sin aplicar.
+- R-01 y las páginas modificadas quedan en `revision: borrador` hasta la revisión humana.

@@ -1,7 +1,7 @@
 ---
 tipo: indicador
 subtipo: indicador
-fuentes: [F03, F02]
+fuentes: [F03, F02, F06]
 fecha: 2026-09-14
 clase_datos: [FICTICIO]
 estado: esperado
@@ -38,11 +38,15 @@ tags: [indicador, ficticio]
 
 ## Ambigüedades
 
-1. **Qué conjunto es «los datos de movimientos».** F03 usa los movimientos al 14-sep. F02 registra además `ventas_simuladas` e `inventario_simulado` al 2026-10-24 y `compras_simuladas` al 2026-10-23, también FICTICIOS ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), filas de la HU-34). [CALCULADO] Con `ventas_simuladas`, el valor sería 2026-11-03 − 2026-10-24 = 10 días y **cumpliría** la meta. El resultado depende del conjunto elegido, y F03 no lo nombra por su identificador. La wiki sigue a F03 (movimientos de la HU-17 y la HU-30) porque es la definición aprobada; queda **pendiente** que el equipo fije el conjunto.
-2. **Qué es «la fecha de la decisión».** No hay decisiones de compra registradas en las fuentes. Sin ese dato el indicador se mide contra una fecha supuesta.
+1. **Qué conjunto es «los datos de movimientos».** F03 usa los movimientos al 14-sep. F02 registra además `ventas_simuladas` e `inventario_simulado` al 2026-10-24 y `compras_simuladas` al 2026-10-23, también FICTICIOS ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), filas de la HU-34). [CALCULADO] Con `ventas_simuladas`, el valor sería 2026-11-03 − 2026-10-24 = 10 días y **cumpliría** la meta. El resultado depende del conjunto elegido, y F03 no lo nombra por su identificador. [OBSERVADO] F06 lo deja todavía más abierto: resume el criterio como «Días entre la fecha de los datos y la decisión de compra», sin decir «de movimientos» ([F06](../../fuentes/F06_portada_repositorio/README.md), «Criterios de éxito (HU-33)»). Prevalece F03 porque F06 es un resumen. La wiki sigue a F03 (movimientos de la HU-17 y la HU-30) porque es la definición aprobada; queda **pendiente** que el equipo fije el conjunto.
+2. [INFERENCIA] **Qué es «la fecha de la decisión».** No hay decisiones de compra registradas en las fuentes. Sin ese dato el indicador se mide contra una fecha supuesta.
 3. [OBSERVADO] **Fecha de medición de la línea base.** F03 la fecha el 26-oct, pero la única carga del registro F02 es del 27-oct 18:00 UTC ([F02](../../fuentes/F02_registro_fuentes_HU02/historial_cargas.csv), columna `fecha_intento`). La fecha de corte no cambia, así que el valor de 42 días se sostiene.
-4. **Vigencia de los otros insumos.** El indicador mira sólo los movimientos. Los costos (cotizaciones de 2026-06) y el INE (hasta 2026-08) también envejecen y no entran en ningún indicador ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`).
+4. [INFERENCIA] **Vigencia de los otros insumos.** El indicador mira sólo los movimientos. Los costos (cotizaciones de 2026-06) y el INE (hasta 2026-08) también envejecen y no entran en ningún indicador ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). La antigüedad de cada conjunto al 3-nov-2026 está en [[R-01-salud-3-nov#H-09. Antigüedad de cada corte al 3-nov-2026|R-01]].
 
 ## Cómo recalcular
 
     python3 -c "import csv,datetime as d;r={x['conjunto']:x['fecha_corte_datos'] for x in csv.DictReader(open('fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv',encoding='utf-8'))};h=d.date(2026,11,3);print({k:(h-d.date.fromisoformat(r[k])).days for k in ['movimientos_inventario','historial_movimientos','ventas_simuladas']})"
+
+## Cambios
+
+- 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]]: se agregó a la ambigüedad 1 la redacción de F06 (H-06) y se etiquetaron las ambigüedades 2 y 4 (H-08). El valor y el estado frente a la meta no cambian.

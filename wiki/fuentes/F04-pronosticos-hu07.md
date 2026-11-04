@@ -31,6 +31,7 @@ tags: [fuente, ficticio]
 | Filas con `seleccion` = SIN_SELECCION_FIABLE | 30 de 30 | [CALCULADO] |
 | Periodos evaluados por repuesto | 5 (2026-09-10 a 2026-09-14) | [OBSERVADO], columnas `periodos_evaluados`, `desde_evaluacion`, `hasta_evaluacion` |
 | Repuestos sin ventas en la ventana evaluada | 7 de 10 | [CALCULADO], columna `dias_con_ventas_evaluacion` = 0 |
+| Repuestos con menos de 3 días con ventas en entrenamiento | 10 de 10 (8 con 0 días, 2 con 1) | [CALCULADO], columna `dias_con_ventas_entrenamiento`; las 30 filas lo dicen en `limitaciones` |
 | MAE medio, último periodo | 0,14 unidades/día (suma 1,4 / 10) | [CALCULADO] |
 | MAE medio, promedio móvil de 3 días | 0,14 unidades/día (suma 1,4 / 10) | [CALCULADO] |
 | MAE medio, mismo día de la semana | 0,32 unidades/día (suma 3,2 / 10) | [CALCULADO] |
@@ -38,6 +39,11 @@ tags: [fuente, ficticio]
 Fuente de todas las filas: [F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `metodo`, `mae`, `seleccion` y `dias_con_ventas_evaluacion`. El MAE medio entre repuestos es un agregado que hace la wiki; F04 no lo publica. Ese promedio mezcla repuestos con y sin ventas en la evaluación: en los 3 con ventas los tres métodos empatan en 0,467 (ver [[Q-01-criterios-hu33-al-3-nov#Verificación (revisión 02)|Q-01]]).
 
 - [INFERENCIA] Con 7 de 10 repuestos sin ventas en evaluación, un MAE de cero no valida ningún método; el propio CSV lo dice en la columna `limitaciones` («sin ventas registradas en evaluacion: MAE cero no valida el metodo»).
+- [INFERENCIA] Ningún repuesto cumple la regla de tres días con ventas en entrenamiento del quinto párrafo del [README](../../fuentes/F04_pronosticos_HU07/README.md), así que la falta de selección no se debe sólo al largo del historial. Detalle en [[KPI-1-mejora-mae-pronostico#Valor al 3-nov-2026|KPI-1]].
+
+## Cambios
+
+- 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]] (H-05): se agregaron la fila de días con ventas en entrenamiento y la inferencia que sale de ella.
 
 ## Vacíos
 

@@ -1,0 +1,18 @@
+exit=0
+2026-11-03T21:31:56-04:00
+ M AGENTS.md
+ M docs/u4-t1/REPRODUCIR.md
+ M wiki/fuentes/F04-pronosticos-hu07.md
+ M wiki/fuentes/F05-costos-importacion-hu31.md
+ M wiki/fuentes/F06-portada-repositorio.md
+ M wiki/index.md
+ M wiki/indicadores/KPI-1-mejora-mae-pronostico.md
+ M wiki/indicadores/KPI-2-costo-con-respaldo.md
+ M wiki/indicadores/KPI-3-vigencia-datos.md
+ M wiki/log.md
+ M wiki/objetivos.md
+ M wiki/sintesis/O-1-cuanto-se-vendera.md
+ M wiki/sintesis/O-2-cuanto-cuesta-traerlo.md
+ M wiki/sintesis/O-3-datos-al-dia.md
+?? docs/u4-t1/evidencia/corridas/03/
+?? wiki/revisiones/

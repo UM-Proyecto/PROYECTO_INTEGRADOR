@@ -90,7 +90,7 @@ Cada afirmación relevante lleva una etiqueta y una cita (o un wikilink a la pá
 | [SUPUESTO] | Algo que se da por cierto sin evidencia |
 | [ESPERADO] | Una meta o resultado esperado |
 
-La cita es un enlace relativo al archivo de `fuentes/` más la fila, columna o sección. Desde una página de `wiki/fuentes/`, `wiki/indicadores/` o `wiki/sintesis/` el prefijo es `../../fuentes/`; desde `wiki/index.md` u `wiki/objetivos.md` es `../fuentes/`. Las rutas con espacios se escriben con `%20`. Ejemplo:
+La cita es un enlace relativo al archivo de `fuentes/` más la fila, columna o sección. Desde una página de `wiki/fuentes/`, `wiki/indicadores/`, `wiki/sintesis/`, `wiki/consultas/` o `wiki/revisiones/` el prefijo es `../../fuentes/`; desde `wiki/index.md` u `wiki/objetivos.md` es `../fuentes/`. Las rutas con espacios se escriben con `%20`. Ejemplo:
 
     [F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna tipo_dato
 
@@ -105,6 +105,12 @@ Cada página de `wiki/indicadores/` tiene: fórmula, unidad, granularidad, perí
 - Antes de crear una página, busca en `wiki/` (por nombre de archivo y por el tema en `index.md`). Si ya existe una sobre lo mismo, actualízala.
 - Al actualizar, cambia `actualizado` y, si cambia una conclusión, deja la anterior tachada o explicada en una sección «Cambios», con la fecha y la fuente que la motivó.
 - Toda página nueva se agrega a `index.md` en la misma pasada. Una página que no está en el índice no existe.
+
+## Revisión de salud
+
+- `salud.py` controla la forma (enlaces, metadatos, etiquetas en párrafos con cifras). No compara una página con otra ni con la fuente, no ve afirmaciones sin cifra y no sabe si una fecha está vieja. La revisión de salud lee además cada página contra `fuentes/`. La primera está en `wiki/revisiones/R-01-salud-3-nov.md`.
+- El corte de un conjunto en F02 es su fecha más reciente y puede esconder filas más viejas. Para hablar de la vigencia de un respaldo, mira la fecha de la fila (por ejemplo, la columna `fecha_dato` de F05).
+- Una página con `revision: revisado` no se edita: el hallazgo se anota en la revisión como pendiente para la persona que revisa.
 
 ## Contradicciones
 
