@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 subtipo: fuente
-fuentes: [F01]
+fuentes: [F01, F07]
 fecha: 2026-10-14
 clase_datos: []
 estado: observado
@@ -29,8 +29,12 @@ No contiene datos; describe la pregunta y el objetivo del proyecto. Por eso no t
 
 ## Contradicciones
 
-- **C-01. Nombre de la empresa.** [OBSERVADO] El objetivo escribe «MULTIPARTE» y la pregunta, en el mismo documento, «MULTIPARTES» ([F01](../../fuentes/F01_pregunta_enfocada/PREGUNTA%20ENFOCADA%20Y%20OBJETIVO.docx), secciones «Pregunta Enfocada» y «Objetivo general enfocado»). La portada del repositorio usa «MULTIPARTES» ([F06](../../fuentes/F06_portada_repositorio/README.md), título y «Pregunta enfocada»). **Prevalece «MULTIPARTES»** [INFERENCIA]: es la forma que usan la pregunta, F03, F06 y el manifiesto; «MULTIPARTE» parece una errata y no cambia el sentido.
+- **C-01. Nombre de la empresa.** [OBSERVADO] El objetivo escribe «MULTIPARTE» y la pregunta, en el mismo documento, «MULTIPARTES» ([F01](../../fuentes/F01_pregunta_enfocada/PREGUNTA%20ENFOCADA%20Y%20OBJETIVO.docx), secciones «Pregunta Enfocada» y «Objetivo general enfocado»). La portada del repositorio usa «MULTIPARTES» ([F06](../../fuentes/F06_portada_repositorio/README.md), título y «Pregunta enfocada»). **Prevalece «MULTIPARTES»** [INFERENCIA]: es la forma que usan la pregunta, F03, F06 y el manifiesto; «MULTIPARTE» parece una errata y no cambia el sentido. [OBSERVADO] Desde la segunda ingesta, la descripción de la HU-34 también escribe «MULTIPARTE», en el nombre del archivo y en el texto ([F07](../../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), «Empresa y propósito»; ver [[F07-datos-simulados-hu34#Contradicciones|F07]]). La resolución no cambia.
 
 ## Cómo leerla
 
     python3 -c "import zipfile,re;x=zipfile.ZipFile('fuentes/F01_pregunta_enfocada/PREGUNTA ENFOCADA Y OBJETIVO.docx').read('word/document.xml').decode();print('\n'.join(t for t in (''.join(re.findall(r'<w:t[^>]*>([^<]*)</w:t>',p)) for p in re.findall(r'<w:p[ >].*?</w:p>',x,re.S)) if t.strip()))"
+
+## Cambios
+
+- 2026-11-03, segunda ingesta ([[F07-datos-simulados-hu34|F07]]): C-01 suma a F07 como segunda fuente que escribe «MULTIPARTE». La resolución sigue igual.

@@ -16,7 +16,8 @@ Escribe en español neutro, sin voseo.
 
 ## Fuentes
 
-- Lee primero `fuentes/MANIFIESTO.md` y `fuentes/MANIFIESTO.csv`. Sólo valen las fuentes que están ahí (F01 a F06 al 3-nov-2026; puede llegar una F07). No uses internet ni archivos fuera de `fuentes/`.
+- Lee primero `fuentes/MANIFIESTO.md` y `fuentes/MANIFIESTO.csv`. Sólo valen las fuentes que están ahí (F01 a F07 al 3-nov-2026; F07 llegó en la segunda ingesta). Una fuente nueva tiene su página y una sección «Cambios de esta ingesta» que dice qué páginas, enlaces y conclusiones cambiaron; cada página afectada anota además el cambio en su propia sección «Cambios».
+- F07 trae sólo uno de los tres CSV que describe (ventas). Las cifras de compras e inventario se citan de la descripción como [OBSERVADO] y no se presentan como recalculadas. No uses internet ni archivos fuera de `fuentes/`.
 - Cada fuente tiene una página en `wiki/fuentes/F0N-<tema>.md`. Si una fuente cambia, se copia en una carpeta nueva (por ejemplo `F05b_...`); en la wiki se agrega su página y se actualizan las que dependen de ella, sin borrar la referencia anterior.
 - El docx de F01 se lee extrayendo `word/document.xml` con `zipfile` de la biblioteca estándar, sin escribir en `fuentes/`.
 - Si un cálculo necesita un script, se escribe fuera del repositorio (por ejemplo en `/tmp`) o como comando de una línea dentro de la página. No se agregan archivos a `src/` ni a `data/`.

@@ -1,7 +1,7 @@
 ---
 tipo: hallazgo
 subtipo: sintesis
-fuentes: [F01, F03, F04, F02, F06]
+fuentes: [F01, F03, F04, F02, F06, F07]
 fecha: 2026-09-14
 clase_datos: [FICTICIO]
 estado: inferido
@@ -24,13 +24,14 @@ tags: [hallazgo, ficticio]
 
 ## Qué significa para la decisión
 
-- [INFERENCIA] Hoy la wiki **no puede recomendar** una técnica de pronóstico para decidir cantidades. El procedimiento de comparación existe y corre; lo que falta es historial.
+- [INFERENCIA] Hoy la wiki **no puede recomendar** una técnica de pronóstico para decidir cantidades. El procedimiento de comparación existe y corre. Desde la segunda ingesta, lo que falta ya no es historial de prueba: [[F07-datos-simulados-hu34|F07]] trae uno. Falta correr la comparación sobre él y acordar la regla de selección (C-02).
 - [INFERENCIA] Mientras no haya un método elegido, cualquier cantidad que se pida sale del criterio del jefe de compras, no de un pronóstico validado.
 - [INFERENCIA] Con 7 de 10 repuestos sin ventas en la ventana evaluada, el problema no es sólo el largo del historial: muchos repuestos tienen ventas esporádicas, y un MAE bajo no distingue un buen pronóstico de un repuesto que no se vende. Esto es una lectura de datos FICTICIOS y habrá que comprobarla con datos reales.
+- [CALCULADO] La otra simulación del equipo no repite ese patrón. En las ventas FICTICIAS de la HU-34 sólo el 9,0 % de los días repuesto tienen cero ventas, y cada uno de los 30 repuestos vende entre 504 y 657 de los 662 días ([F07](../../fuentes/F07_datos_simulados_HU34/ventas_simuladas.csv), columna `unidades_vendidas`; comando en [[F07-datos-simulados-hu34#Cómo recalcular|F07]]). [INFERENCIA] Las dos simulaciones describen repuestos muy distintos, así que ninguna de las dos dice cómo se venden los repuestos de MULTIPARTES; sólo el historial real lo dirá.
 
 ## Qué falta
 
-1. [OBSERVADO] Historial de al menos un año con 3 meses reservados ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1).
+1. [OBSERVADO] Historial de al menos un año con 3 meses reservados ([F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1). [CALCULADO] Como dato FICTICIO ya existe: las ventas de la HU-34 cubren 662 días ([F07](../../fuentes/F07_datos_simulados_HU34/ventas_simuladas.csv), columna `fecha`; detalle en [[KPI-1-mejora-mae-pronostico#Qué falta|KPI-1]]). Falta la comparación de métodos sobre ese historial y, para hablar de la empresa, el historial real.
 2. [OBSERVADO] El resultado de la HU-36 con 284 días, que no está en `fuentes/` ([F06](../../fuentes/F06_portada_repositorio/README.md), fila HU-36).
 3. [OBSERVADO] Una decisión del equipo sobre C-02 (un año + 3 meses en F03 frente a 12 + 12 meses en F04). Ver [[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]].
 4. [INFERENCIA] Datos de faltantes de stock, para no confundir ventas observadas con demanda ([F04](../../fuentes/F04_pronosticos_HU07/README.md), tercer párrafo).
@@ -41,3 +42,4 @@ tags: [hallazgo, ficticio]
 ## Cambios
 
 - 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]] (H-05 y H-08): se agregó el ítem 5 y se etiquetaron los ítems 1, 3 y 4. La conclusión no cambia.
+- 2026-11-03, segunda ingesta ([[F07-datos-simulados-hu34|F07]]): decía «lo que falta es historial». Ahora dice que el historial de prueba existe y que falta la comparación sobre él y la regla de selección. Se agregó el contraste con las ventas de F07 y la nota al ítem 1. El estado sigue en «no medible».

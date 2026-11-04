@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 subtipo: fuente
-fuentes: [F02, F06]
+fuentes: [F02, F06, F07]
 fecha: 2026-10-27
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: observado
@@ -43,14 +43,15 @@ Fechas de corte y conteos tomados de [`registro_actualizaciones.csv`](../../fuen
 | ine_flete_mensual | Importaciones de repuestos por mes (INE) | PUBLICO | Samuel | 2026-08 | 2842 | insumo de F05 |
 | flete_referencias | Cotizaciones de referencia de flete | PUBLICO | Samuel | 2026-10-09 | 6 | insumo de F05 |
 | tc_series_diaria | Tipo de cambio diario (HU-32) | PUBLICO | Equipo (HU-32) | 2026-10-26 | 127 | |
-| ventas_simuladas | Ventas diarias por repuesto (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | ver ambigüedad de [[KPI-3-vigencia-datos|KPI-3]] |
-| compras_simuladas | Compras recibidas (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-23 | 3600 | |
-| inventario_simulado | Inventario diario (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | |
+| ventas_simuladas | Ventas diarias por repuesto (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | archivo en [[F07-datos-simulados-hu34|F07]]; ambigüedad de [[KPI-3-vigencia-datos|KPI-3]] y de [[KPI-1-mejora-mae-pronostico|KPI-1]] |
+| compras_simuladas | Compras recibidas (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-23 | 3600 | descrito en [[F07-datos-simulados-hu34|F07]] |
+| inventario_simulado | Inventario diario (HU-34) | FICTICIO | Equipo (HU-34) | 2026-10-24 | 19860 | descrito en [[F07-datos-simulados-hu34|F07]]; ambigüedad de [[KPI-3-vigencia-datos|KPI-3]] |
 
 ## Observaciones
 
 - [OBSERVADO] Las fechas de corte no coinciden entre conjuntos: van de 2026-08 (INE) a 2026-10-26 (tipo de cambio) ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). El manifiesto ya lo anota como limitación.
 - [OBSERVADO] Los conjuntos de la HU-34 (ventas, compras e inventario simulados) llegan al 23 y 24 de octubre, mientras que los movimientos de la HU-17 y la HU-30 llegan al 14 de septiembre ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`). Esto afecta la definición de [[KPI-3-vigencia-datos|KPI-3]].
+- [CALCULADO] Desde la segunda ingesta, el renglón `ventas_simuladas` se puede comprobar contra el archivo: la huella SHA-256 de [F07](../../fuentes/F07_datos_simulados_HU34/ventas_simuladas.csv) es la que guarda el registro, y el archivo tiene 19.860 filas con última fecha 2026-10-24, como dicen las columnas `registros` y `fecha_corte_datos` ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `ventas_simuladas`). Comando en [[F07-datos-simulados-hu34#Cómo recalcular|F07]]. [OBSERVADO] Los conteos y fechas de compras e inventario del registro también coinciden con la descripción de F07 ([F07](../../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), «Inventario de fuentes» y rangos de fechas); sus CSV no están en `fuentes/`.
 - [OBSERVADO] El campo `fecha_corte_datos` de `historial_ajustes` trae hora (`2026-10-02 10:05:00`) y el de `costos_complementarios` sólo mes (`2026-09`): el formato no es uniforme ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), columna `fecha_corte_datos`).
 
 ## Contradicciones
@@ -61,3 +62,7 @@ Fechas de corte y conteos tomados de [`registro_actualizaciones.csv`](../../fuen
 ## Cómo recalcular
 
     python3 -c "import csv,collections;r=list(csv.DictReader(open('fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv',encoding='utf-8')));print(len(r),collections.Counter(x['tipo_dato'] for x in r),collections.Counter(x['estado_ultima_carga'] for x in r))"
+
+## Cambios
+
+- 2026-11-03, segunda ingesta ([[F07-datos-simulados-hu34|F07]]): las tres filas de la HU-34 del diccionario enlazan a F07, y se agregó la observación de que el registro coincide con el archivo de ventas y con la descripción. Ninguna cifra cambia.

@@ -112,3 +112,27 @@ Registro cronológico. Sólo se agregan entradas al final; las anteriores no se 
 ## 2026-11-03. Revisión humana de la etapa 3
 
 **Notas:** `docs/u4-t1/evidencia/revisiones/03.md`. Se recalcularon las cifras nuevas de [[R-01-salud-3-nov|R-01]] y se aceptaron sus once correcciones. Dos de ellas corrigen a la revisión 01: la HU-31 tiene tres conjuntos (H-03) y el motivo dado para la clase MIXTO de la tabla de costos no tiene respaldo (H-02), que queda como la contradicción C-05, pendiente del responsable de la HU-31. Se resolvieron los dos pendientes que el agente no podía tocar: el aviso de Q-01 (H-10) y la convención del campo `fecha` (H-11), que pasó a [[AGENTS]].
+
+## 2026-11-03. Etapa 4: segunda ingesta (F07)
+
+**Agente:** Claude Code (Claude Opus 5.5), prompt mejorado versión 2.
+
+**Fuentes leídas:** `fuentes/MANIFIESTO.md` y `MANIFIESTO.csv` (fila F07), los tres archivos de F07 (descripción de la HU-34, `ventas_simuladas.csv` completo y guía de limpieza), F02 (`registro_actualizaciones.csv` y `conjuntos.csv`), F03 (`CRITERIOS_APROBADOS.md`), F04 (`comparacion_pronosticos.csv`, para el formato de los códigos) y F06. También [[index]], [[objetivos]], los tres indicadores, las tres síntesis, [[Q-01-criterios-hu33-al-3-nov|Q-01]], [[R-01-salud-3-nov|R-01]] y [[AGENTS]].
+
+**Verificado en el archivo:** el CSV de ventas tiene 19.860 filas, 30 repuestos y 662 días seguidos hasta el 2026-10-24, y su huella coincide con la que guarda F02. Los faltantes que declara la descripción para ventas (199 filas) coinciden. Compras e inventario sólo están descritos.
+
+**Creadas:** `wiki/fuentes/F07-datos-simulados-hu34.md`, con la sección «Cambios de esta ingesta» (páginas, enlaces y conclusiones que cambiaron).
+
+**Modificadas:** `AGENTS.md` (fuentes vigentes F01 a F07, cómo registrar una ingesta), `wiki/index.md`, `wiki/objetivos.md`, `wiki/fuentes/F01-pregunta-enfocada.md`, `F02-registro-fuentes-hu02.md`, `F06-portada-repositorio.md`, `wiki/indicadores/KPI-1-mejora-mae-pronostico.md`, `KPI-3-vigencia-datos.md`, `wiki/sintesis/O-1-cuanto-se-vendera.md`, `O-3-datos-al-dia.md`, `wiki/log.md`. No se tocaron [[Q-01-criterios-hu33-al-3-nov|Q-01]] ni [[R-01-salud-3-nov|R-01]], que están revisadas.
+
+**Conclusiones:** ningún valor de indicador ni estado frente a la meta cambia (KPI-1 no medible, KPI-2 40 %, KPI-3 50 días). La ambigüedad de KPI-3 queda acotada con cinco candidatos fechados, pero sigue pendiente; con los datos de la HU-34 daría 10 días. En KPI-1 cambia el motivo del «no medible»: ya hay un historial de prueba con el largo que pide F03, y lo que falta es la comparación sobre él y resolver C-02, que ahora tiene un caso concreto (662 días: alcanza para F03, no para F04).
+
+**Contradicción nueva:** C-06. F07 dice «No se proporcionaron bases empresariales reales para esta actividad» y F06 que la empresa facilitó una muestra de unos 20 registros. Para el origen de los datos del proyecto prevalece F06; queda pendiente de la responsable de la HU-34. C-01 suma a F07.
+
+**Pendientes:**
+
+- C-06, C-02, C-03 y C-05; el conjunto de movimientos de KPI-3 y la regla de agregación de KPI-1.
+- Correr la comparación de métodos de la HU-07 sobre las ventas de F07, con 3 meses reservados, si el equipo acepta ese historial para KPI-1.
+- [[Q-01-criterios-hu33-al-3-nov|Q-01]] (revisada): su tabla «Qué falta» dice que no hay historial de un año más 3 meses, y con F07 lo hay como dato FICTICIO. Lo decide la persona que revisa.
+- Los CSV de compras e inventario de la HU-34 no están en `fuentes/`.
+- F07 y las páginas modificadas quedan en `revision: borrador` hasta la revisión humana.

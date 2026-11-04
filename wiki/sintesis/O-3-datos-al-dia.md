@@ -1,7 +1,7 @@
 ---
 tipo: hallazgo
 subtipo: sintesis
-fuentes: [F03, F02, F05]
+fuentes: [F03, F02, F05, F07]
 fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: inferido
@@ -26,11 +26,12 @@ tags: [hallazgo, ficticio, publico, mixto]
 
 - [INFERENCIA] El mecanismo para medir la vigencia ya existe: el registro guarda la fecha de corte de cada conjunto y avisa si una carga falla. Lo que no existe es un flujo de datos que lo mantenga al día.
 - [INFERENCIA] Con el conjunto que define F03, la meta no se cumple y empeora con cada día que pasa sin carga nueva. Con los datos simulados de la HU-34 (al 24-oct), el valor sería de 10 días y la cumpliría. Mientras el equipo no fije el conjunto, el estado del objetivo depende de una elección de definición, no de los datos (ambigüedad 1 de [[KPI-3-vigencia-datos#Ambigüedades|KPI-3]]).
+- [CALCULADO] La segunda ingesta confirma la fecha de las ventas FICTICIAS de la HU-34 en el propio archivo (2026-10-24) y muestra que su inventario diario, con entradas y salidas, llega al mismo día ([F07](../../fuentes/F07_datos_simulados_HU34/ventas_simuladas.csv), columna `fecha`; [F07](../../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), «Conjunto: inventario»). Con cualquiera de los dos, la meta se cumpliría hasta el 2026-11-23. [INFERENCIA] El problema de vigencia de O3 no es que no existan datos de prueba recientes, sino que la definición aprobada mira otros, y que ninguno de los dos grupos es de la empresa.
 - [INFERENCIA] Al ser datos FICTICIOS, el valor mide la vigencia de los datos de prueba del equipo, no la de los sistemas de MULTIPARTES.
 
 ## Qué falta
 
-1. [INFERENCIA] Que el equipo nombre el conjunto exacto que cuenta como «datos de movimientos» (ambigüedad 1 de [[KPI-3-vigencia-datos#Ambigüedades|KPI-3]]).
+1. [INFERENCIA] Que el equipo nombre el conjunto exacto que cuenta como «datos de movimientos» (ambigüedad 1 de [[KPI-3-vigencia-datos#Ambigüedades|KPI-3]], que desde la segunda ingesta compara los cinco candidatos con su valor).
 2. [CALCULADO] Una carga de movimientos con corte el 2026-10-04 o después, para cumplir la meta al 3-nov-2026: 2026-11-03 − 2026-10-04 = 30 días ([[KPI-3-vigencia-datos|KPI-3]]).
 3. Una fecha de decisión de compra registrada; hoy se usa la fecha de la consulta como [SUPUESTO].
 
@@ -41,3 +42,4 @@ tags: [hallazgo, ficticio, publico, mixto]
 ## Cambios
 
 - 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]] (H-01): decía «corte posterior al 2026-10-04». Un corte el mismo 2026-10-04 ya cumple la meta, como dice KPI-3. Se agregó también la nota sobre la antigüedad de las cotizaciones (H-09).
+- 2026-11-03, segunda ingesta ([[F07-datos-simulados-hu34|F07]]): se agregó la confirmación de la fecha de las ventas en el CSV y el inventario diario como segundo candidato. El estado del objetivo no cambia.

@@ -1,7 +1,7 @@
 ---
 tipo: mapa
 subtipo: indice
-fuentes: [F01, F02, F03, F04, F05, F06]
+fuentes: [F01, F02, F03, F04, F05, F06, F07]
 fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: observado
@@ -31,6 +31,7 @@ Clases de datos (nombres del registro de la HU-02): FICTICIO (datos de prueba de
 - [[F04-pronosticos-hu07|F04. Comparación de pronósticos (HU-07)]]: MAE de tres métodos en 10 repuestos, 10 al 14-sep-2026. FICTICIO.
 - [[F05-costos-importacion-hu31|F05. Costos de importación (HU-31)]]: 15 componentes del costo con su respaldo, corte 2026-10-09. MIXTO y PUBLICO.
 - [[F06-portada-repositorio|F06. Portada del repositorio]]: resumen del equipo sobre origen de datos, historias y criterios (commit `c27757a`).
+- [[F07-datos-simulados-hu34|F07. Datos simulados de la HU-34]]: descripción de ventas, compras e inventario simulados, ventas diarias de 30 repuestos del 2025-01-01 al 2026-10-24 y guía de limpieza. FICTICIO. Incorporada en la segunda ingesta; su sección «Cambios de esta ingesta» dice qué páginas, enlaces y conclusiones cambiaron.
 
 ### Indicadores
 
@@ -56,14 +57,15 @@ Clases de datos (nombres del registro de la HU-02): FICTICIO (datos de prueba de
 
 | Código | Entre | Qué no coincide | Resolución | Página |
 |---|---|---|---|---|
-| C-01 | F01 y F06 | El objetivo de F01 dice «MULTIPARTE»; la pregunta de F01 y F06 dicen «MULTIPARTES» ([F01](../fuentes/F01_pregunta_enfocada/PREGUNTA%20ENFOCADA%20Y%20OBJETIVO.docx), [F06](../fuentes/F06_portada_repositorio/README.md)) | Prevalece «MULTIPARTES»; parece errata | [[F01-pregunta-enfocada#Contradicciones|F01]] |
+| C-01 | F01 y F07 frente a F06 | El objetivo de F01 y la descripción de F07 dicen «MULTIPARTE»; la pregunta de F01 y F06 dicen «MULTIPARTES» ([F01](../fuentes/F01_pregunta_enfocada/PREGUNTA%20ENFOCADA%20Y%20OBJETIVO.docx), [F07](../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), [F06](../fuentes/F06_portada_repositorio/README.md)) | Prevalece «MULTIPARTES»; parece errata. F07 se sumó en la segunda ingesta | [[F01-pregunta-enfocada#Contradicciones|F01]] |
 | C-02 | F03 y F04 | Historial para el pronóstico: un año + 3 meses reservados ([F03](../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md), fila 1) frente a 12 meses + 12 meses ([F04](../fuentes/F04_pronosticos_HU07/README.md), quinto párrafo) | Para medir KPI-1 prevalece F03 (criterio aprobado, posterior). **Pendiente** que el equipo alinee la regla de selección | [[KPI-1-mejora-mae-pronostico#Contradicciones|KPI-1]] |
 | C-03 | F02 y F06 | HU-32: MIXTO en F06; su conjunto `tc_series_diaria` es PUBLICO en F02 ([F06](../fuentes/F06_portada_repositorio/README.md), fila HU-32; [F02](../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `tc_series_diaria`) | Prevalece F02 para la clase del conjunto. **Pendiente** si falta registrar la parte FICTICIA | [[F02-registro-fuentes-hu02#Contradicciones|F02]] |
 | C-04 | F02 y F06 | F06 dice que la HU-31 es MIXTO por «cotizaciones de proveedor FICTICIAS»; la tabla de costos no trae ninguna ([F06](../fuentes/F06_portada_repositorio/README.md), fila HU-31; [F02](../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), filas `costos_importacion` y `cotizaciones_proveedor`) | **Resuelta (revisión 01):** F06 describe la historia, que tiene tres conjuntos en F02 (corregido en R-01; decía dos); las cotizaciones FICTICIAS son otro conjunto. El motivo dado para el MIXTO se discute en C-05 | [[F05-costos-importacion-hu31#Contradicciones|F05]] |
 | C-05 | Manifiesto y F06 frente a F02 y F05 | MIXTO es «tablas que combinan datos públicos con datos de prueba» ([manifiesto](../fuentes/MANIFIESTO.md), «Cómo se clasifican los datos»; [F06](../fuentes/F06_portada_repositorio/README.md), «De dónde salen los datos»), pero la tabla de costos registrada como MIXTO ([F02](../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `costos_importacion`) no trae datos de prueba ([F05](../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato`) | Para la clase prevalece F02 (MIXTO). **Pendiente** que el equipo diga si debe ser PUBLICO o por qué es MIXTO. No cambia el valor de KPI-2 | [[F05-costos-importacion-hu31#Contradicciones|F05]] |
+| C-06 | F07 y F06 | F07: «No se proporcionaron bases empresariales reales para esta actividad» ([F07](../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), «Naturaleza y alcance»); F06: «MULTIPARTES facilitó una muestra inicial pequeña, de unos 20 registros» ([F06](../fuentes/F06_portada_repositorio/README.md), «De dónde salen los datos») | Para el origen de los datos del proyecto prevalece F06; la frase de F07 se limita a la HU-34. Las dos dicen FICTICIO. **Pendiente** que la responsable de la HU-34 aclare si usó la muestra. No cambia ninguna cifra | [[F07-datos-simulados-hu34#Contradicciones|F07]] |
 
 ## Ambigüedades abiertas en los indicadores
 
-- KPI-1: cómo se agregan los repuestos y qué es «el método elegido». Además, ningún repuesto cumple la regla de F04 de tres días con ventas en entrenamiento ([[KPI-1-mejora-mae-pronostico#Ambigüedades|detalle]]).
+- KPI-1: cómo se agregan los repuestos y qué es «el método elegido». Además, ningún repuesto cumple la regla de F04 de tres días con ventas en entrenamiento. Desde la segunda ingesta hay un historial FICTICIO de 662 días en F07 que alcanza el año más 3 meses de F03, pero F03 nombra otro historial (HU-30) y nadie ha corrido la comparación sobre él ([[KPI-1-mejora-mae-pronostico#Ambigüedades|detalle]]).
 - KPI-2: qué es un «componente», si una publicación del INE cuenta como respaldo y si importa la antigüedad del documento ([[KPI-2-costo-con-respaldo#Ambigüedades|detalle]]).
-- KPI-3: qué conjunto es «los datos de movimientos»; con `ventas_simuladas` el valor sería 10 días y cumpliría. F06 lo resume como «la fecha de los datos», sin más ([[KPI-3-vigencia-datos#Ambigüedades|detalle]]).
+- KPI-3: qué conjunto es «los datos de movimientos». Con la definición de F03 da 50 días; con las ventas o el inventario FICTICIOS de la HU-34 (F07) daría 10 días y cumpliría hasta el 2026-11-23. F07 acota la ambigüedad con cinco candidatos fechados, pero no la resuelve. F06 lo resume como «la fecha de los datos», sin más ([[KPI-3-vigencia-datos#Ambigüedades|detalle]]).

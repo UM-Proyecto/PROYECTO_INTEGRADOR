@@ -1,0 +1,15 @@
+exit=0
+2026-11-03T21:41:09-04:00
+ M AGENTS.md
+ M wiki/fuentes/F01-pregunta-enfocada.md
+ M wiki/fuentes/F02-registro-fuentes-hu02.md
+ M wiki/fuentes/F06-portada-repositorio.md
+ M wiki/index.md
+ M wiki/indicadores/KPI-1-mejora-mae-pronostico.md
+ M wiki/indicadores/KPI-3-vigencia-datos.md
+ M wiki/log.md
+ M wiki/objetivos.md
+ M wiki/sintesis/O-1-cuanto-se-vendera.md
+ M wiki/sintesis/O-3-datos-al-dia.md
+?? docs/u4-t1/evidencia/corridas/04/
+?? wiki/fuentes/F07-datos-simulados-hu34.md

@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 subtipo: fuente
-fuentes: [F06, F02, F03]
+fuentes: [F06, F02, F03, F07]
 fecha: 2026-11-03
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: observado
@@ -26,13 +26,15 @@ F06 resume a las demás fuentes. Según el manifiesto, ante una diferencia manda
 
 ## Para qué sirve en la wiki
 
-- [INFERENCIA] Es la referencia contra la que se comparan otras fuentes cuando describen el origen de los datos. Si una fuente dijera que la empresa «no entregó» datos, la diferencia con esta sección iría a «Contradicciones». En F01 a F05 no aparece esa expresión; F05 habla de «Cuando la empresa entregue un historial más amplio» ([F05](../../fuentes/F05_costos_importacion_HU31/LEEME_hu30-31.md), título de la última sección), que es compatible con F06.
+- [INFERENCIA] Es la referencia contra la que se comparan otras fuentes cuando describen el origen de los datos. Si una fuente dijera que la empresa «no entregó» datos, la diferencia con esta sección iría a «Contradicciones». En F01 a F05 no aparece esa expresión; F05 habla de «Cuando la empresa entregue un historial más amplio» ([F05](../../fuentes/F05_costos_importacion_HU31/LEEME_hu30-31.md), título de la última sección), que es compatible con F06. [OBSERVADO] F07, incorporada en la segunda ingesta, sí la usa: «No se proporcionaron bases empresariales reales para esta actividad» ([F07](../../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), «Naturaleza y alcance»). Se registra como C-06.
 
 ## Contradicciones
 
 - **C-03.** F06 dice que la HU-32 es MIXTO; F02 registra su conjunto como PUBLICO. Ver [[F02-registro-fuentes-hu02#Contradicciones|F02]].
 - **C-04 (resuelta).** La fila HU-31 de F06 describe la historia entera, que en F02 tiene tres conjuntos; las cotizaciones FICTICIAS no están en la tabla de costos sino en `cotizaciones_proveedor`. Ver [[F05-costos-importacion-hu31#Contradicciones|F05]].
 - **C-05 (pendiente).** F06 dice que los costos de la HU-31 «combinan las fuentes públicas con datos FICTICIOS de la empresa» ([F06](../../fuentes/F06_portada_repositorio/README.md), «De dónde salen los datos»), pero la tabla de costos, que F02 registra como MIXTO, no trae datos de prueba. Ver [[F05-costos-importacion-hu31#Contradicciones|F05]].
+
+- **C-06 (pendiente).** F06 dice que MULTIPARTES facilitó una muestra inicial de unos 20 registros; F07 dice que para la HU-34 «No se proporcionaron bases empresariales reales». Para el origen de los datos del proyecto prevalece F06. Ver [[F07-datos-simulados-hu34#Contradicciones|F07]].
 
 ## Privacidad
 
@@ -41,3 +43,4 @@ F06 nombra al docente y enlaza al tablero Jira del equipo. La wiki no copia esos
 ## Cambios
 
 - 2026-11-03, revisión de salud [[R-01-salud-3-nov|R-01]]: «No hay diferencia con F03» pasó a describir las tres diferencias de redacción (H-06). En C-04, «dos conjuntos» pasó a «tres» (H-03). Se agregó C-05 (H-02).
+- 2026-11-03, segunda ingesta ([[F07-datos-simulados-hu34|F07]]): decía, sin matiz, que ninguna fuente usa la expresión de que la empresa no dio datos. Era cierto para F01 a F05; F07 sí la usa. Se agregó C-06.
