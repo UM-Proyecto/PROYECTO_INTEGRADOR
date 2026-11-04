@@ -16,7 +16,7 @@ tags: [decision, ficticio, publico, mixto]
 
 [OBSERVADO] «Determinar las técnicas de análisis de datos que permiten apoyar las decisiones de compra de la empresa MULTIPARTE durante el segundo semestre del 2026» ([F01](../fuentes/F01_pregunta_enfocada/PREGUNTA%20ENFOCADA%20Y%20OBJETIVO.docx), «Objetivo general enfocado»; sobre «MULTIPARTE» ver C-01 en el [[index#Contradicciones|índice]]).
 
-**Decisión que apoya la wiki:** qué repuesto pedir a China, en qué cantidad y cuándo. **Usuario:** el jefe de compras de MULTIPARTES. F01 no los nombra; la wiki los toma de las instrucciones del proyecto ([[AGENTS]]) [SUPUESTO sobre el usuario, sin fuente en `fuentes/`].
+**Decisión que apoya la wiki:** qué repuesto pedir a China, en qué cantidad y cuándo. **Usuario:** el jefe de compras de MULTIPARTES. F01 no los nombra. [OBSERVADO] Desde la segunda ingesta el usuario tiene fuente: F07 dice «Actor principal: jefe de compras» y que sus datos sirven «para analizar cuándo y cuánto comprar» ([F07](../fuentes/F07_datos_simulados_HU34/HU34_Descripcion_Datos_MULTIPARTE.md), «Empresa y propósito»). Antes la wiki lo tomaba sólo de las instrucciones del proyecto ([[AGENTS]]) y lo marcaba como supuesto (revisión humana del 3-nov-2026).
 
 [INFERENCIA] El objetivo general se divide en tres objetivos, uno por cada cosa que una decisión de compra necesita saber y uno por cada criterio aprobado en la HU-33 ([F03](../fuentes/F03_criterios_exito_HU33/CRITERIOS_APROBADOS.md)).
 
