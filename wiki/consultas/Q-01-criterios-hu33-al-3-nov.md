@@ -2,7 +2,7 @@
 tipo: hallazgo
 subtipo: consulta
 fuentes: [F02, F03, F04, F05, F06]
-fecha: 2026-10-09
+fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: inferido
 revision: revisado
@@ -16,7 +16,7 @@ tags: [hallazgo, consulta, ficticio, publico, mixto]
 
 **Páginas leídas:** [[index]], [[objetivos]], [[KPI-1-mejora-mae-pronostico|KPI-1]], [[KPI-2-costo-con-respaldo|KPI-2]], [[KPI-3-vigencia-datos|KPI-3]], [[O-1-cuanto-se-vendera|O-1]], [[O-2-cuanto-cuesta-traerlo|O-2]], [[O-3-datos-al-dia|O-3]] y las páginas de fuentes que citan. Las cifras se volvieron a calcular desde `fuentes/` el 3-nov-2026 con los comandos de la sección «Cómo recalcular».
 
-> Esta respuesta afecta una decisión de compra y queda en borrador hasta la revisión humana. Dos de los tres criterios se miden sobre datos FICTICIOS (datos de prueba del equipo, ampliados desde una muestra inicial de unos 20 registros que facilitó MULTIPARTES); sus valores prueban el método y no describen a la empresa.
+> Esta respuesta afecta una decisión de compra. La revisó el equipo el 3-nov-2026 (revisión 02, sección «Verificación»; aviso actualizado en la revisión 03). Dos de los tres criterios se miden sobre datos FICTICIOS (datos de prueba del equipo, ampliados desde una muestra inicial de unos 20 registros que facilitó MULTIPARTES); sus valores prueban el método y no describen a la empresa.
 
 ## Respuesta corta
 
@@ -29,7 +29,7 @@ Metas y líneas base de [F03](../../fuentes/F03_criterios_exito_HU33/CRITERIOS_A
 | Criterio | Meta | Línea base (26-oct-2026) | Valor al 3-nov-2026 | Estado | Clase de los datos | ¿Respalda la decisión hoy? |
 |---|---|---|---|---|---|---|
 | [[KPI-1-mejora-mae-pronostico|KPI-1]]. Mejora del MAE frente a «último periodo» | [ESPERADO] ≥ 15 % con un año de historial y 3 meses reservados | [OBSERVADO] «Sin método elegible» | [CALCULADO] Sin método elegido; como prueba del cálculo, 0 % (promedio móvil) y −128,6 % (mismo día de la semana) sobre una ventana de 5 días ([F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv), columnas `metodo` y `mae`). En los 3 repuestos con ventas los tres métodos empatan (ver «Verificación») | No medible | FICTICIO | No |
-| [[KPI-2-costo-con-respaldo|KPI-2]]. Componentes del costo con respaldo | [ESPERADO] ≥ 80 % | [OBSERVADO] 6 de 15 (40 %) | [CALCULADO] 6 / 15 = 40 % ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato`) | No cumple: faltan 6 componentes | MIXTO; los 6 documentados son valores PUBLICOS y las 5 estimaciones son cálculos sobre datos PUBLICOS del INE | No |
+| [[KPI-2-costo-con-respaldo|KPI-2]]. Componentes del costo con respaldo | [ESPERADO] ≥ 80 % | [OBSERVADO] 6 de 15 (40 %) | [CALCULADO] 6 / 15 = 40 % ([F05](../../fuentes/F05_costos_importacion_HU31/hu31_costos_importacion.csv), columna `tipo_dato`) | No cumple: faltan 6 componentes | MIXTO según F02, con el motivo en discusión (C-05); los 6 documentados son valores PUBLICOS y las 5 estimaciones son cálculos sobre datos PUBLICOS del INE | No |
 | [[KPI-3-vigencia-datos|KPI-3]]. Días entre el corte de movimientos y la decisión | [ESPERADO] ≤ 30 días | [OBSERVADO] 42 días | [CALCULADO] 2026-11-03 − 2026-09-14 = 50 días ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv), fila `movimientos_inventario`, columna `fecha_corte_datos`) | No cumple: 20 días de más | FICTICIO | No |
 
 ## Lo que la evidencia sostiene

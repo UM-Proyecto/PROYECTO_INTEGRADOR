@@ -108,3 +108,7 @@ Registro cronológico. Sólo se agregan entradas al final; las anteriores no se 
 - [[Q-01-criterios-hu33-al-3-nov|Q-01]] está revisada y el agente no la edita: su aviso inicial todavía dice que queda en borrador y, si se acepta C-05, cambia la clase de KPI-2 en su tabla.
 - Convención del campo `fecha` en páginas con varios cortes: propuesta en R-01, sin aplicar.
 - R-01 y las páginas modificadas quedan en `revision: borrador` hasta la revisión humana.
+
+## 2026-11-03. Revisión humana de la etapa 3
+
+**Notas:** `docs/u4-t1/evidencia/revisiones/03.md`. Se recalcularon las cifras nuevas de [[R-01-salud-3-nov|R-01]] y se aceptaron sus once correcciones. Dos de ellas corrigen a la revisión 01: la HU-31 tiene tres conjuntos (H-03) y el motivo dado para la clase MIXTO de la tabla de costos no tiene respaldo (H-02), que queda como la contradicción C-05, pendiente del responsable de la HU-31. Se resolvieron los dos pendientes que el agente no podía tocar: el aviso de Q-01 (H-10) y la convención del campo `fecha` (H-11), que pasó a [[AGENTS]].

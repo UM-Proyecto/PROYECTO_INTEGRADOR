@@ -5,7 +5,7 @@ fuentes: [F01, F02, F03, F04, F05, F06]
 fecha: 2026-10-27
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: inferido
-revision: borrador
+revision: revisado
 actualizado: 2026-11-03
 tags: [hallazgo, revision, ficticio, publico, mixto]
 ---
@@ -108,6 +108,14 @@ tags: [hallazgo, revision, ficticio, publico, mixto]
 - **Sin cambio.** C-02 y C-03 siguen pendientes por los motivos que dan sus páginas. La regla de agregación de KPI-1 y el conjunto de movimientos de KPI-3 siguen sin fijar.
 - **Observado sin corregir.** El log tiene dos entradas de la etapa 2: una del agente y otra de la corrida 02 con su revisión humana. Las entradas anteriores no se editan, así que quedan las dos; la segunda es la que vale.
 - **Redundancia aceptada.** Los comandos de KPI-1, KPI-2 y KPI-3 se repiten en Q-01 con pequeñas diferencias. No son páginas duplicadas, pero si cambia un comando hay que cambiarlo en los dos lugares.
+
+## Revisión humana (revisión 03)
+
+[OBSERVADO] Se recalcularon contra `fuentes/` las cifras nuevas de esta revisión: los días con ventas en entrenamiento de H-05 (8 repuestos con 0 y 2 con 1, y la limitación en las 30 filas de [F04](../../fuentes/F04_pronosticos_HU07/comparacion_pronosticos.csv)), los tres conjuntos de la HU-31 de H-03 ([F02](../../fuentes/F02_registro_fuentes_HU02/registro_actualizaciones.csv)) y los 154 días de las cotizaciones de H-09. Coinciden. Se aceptan los once hallazgos corregidos.
+
+- **H-03 y H-02 / C-05.** Los dos señalan errores de la revisión 01, no del agente: la resolución de C-04 contó dos conjuntos donde F02 registra tres, y explicó el MIXTO con un motivo que ninguna fuente da. Se acepta la corrección de H-03 y se mantiene C-05 pendiente con las dos referencias, porque la clase la decide el responsable de la HU-31 en el repositorio de origen y no se corrige desde la wiki.
+- **H-10, resuelto.** Se actualizó el aviso de [[Q-01-criterios-hu33-al-3-nov|Q-01]] y su columna de clase ahora menciona C-05.
+- **H-11, resuelto.** Se adopta la propuesta: si una página combina varios conjuntos, `fecha` es el corte más antiguo de los que sostienen sus conclusiones. Quedó en [[AGENTS]] y se aplicó a [[index]], [[objetivos]] y Q-01 (2026-09-14). Las páginas de un solo conjunto ya cumplían.
 
 ## Cómo recalcular
 

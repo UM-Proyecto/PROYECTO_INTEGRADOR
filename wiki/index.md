@@ -2,7 +2,7 @@
 tipo: mapa
 subtipo: indice
 fuentes: [F01, F02, F03, F04, F05, F06]
-fecha: 2026-10-27
+fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: observado
 revision: borrador

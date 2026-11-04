@@ -2,7 +2,7 @@
 tipo: decision
 subtipo: mapa
 fuentes: [F01, F02, F03, F04, F05, F06]
-fecha: 2026-10-09
+fecha: 2026-09-14
 clase_datos: [FICTICIO, PUBLICO, MIXTO]
 estado: esperado
 revision: borrador

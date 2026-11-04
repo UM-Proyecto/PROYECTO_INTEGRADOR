@@ -54,7 +54,7 @@ Bloque de metadatos YAML al principio (lo lee Obsidian como propiedades y GitHub
 tipo: fuente | indicador | hallazgo | decision | mapa | registro
 subtipo: fuente | indicador | sintesis | consulta | revision | mapa | indice | log
 fuentes: [F02, F03]
-fecha: 2026-09-14              # corte de los datos que usa la página
+fecha: 2026-09-14              # corte de los datos; si la página combina varios, el más antiguo de los que sostienen sus conclusiones
 clase_datos: [FICTICIO, MIXTO] # si usa datos
 estado: observado | inferido | supuesto | esperado   # naturaleza dominante del contenido
 revision: borrador | revisado | pendiente
